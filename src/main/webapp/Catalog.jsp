@@ -63,6 +63,16 @@
         #ShoppingCartIcon {
             padding: 20px 5px;
         }
+        .catalogItems {
+            position: relative;
+
+            padding-left: 400px;
+        }
+        .optionsPane {
+            position: fixed;
+            left: 0;
+            background-color: ivory;
+        }
     </style>
 </head>
 <body>
@@ -83,18 +93,26 @@
     </form></li>
 </ul>
 <br>
-<ul>
-    <li>
+<div class="optionsPane">
+    <p>All the options go here!</p><br>
+    <p>Sizes</p><br><br>
+    <p>Colors</p><br><br>
+    <p>etc...</p><br><br>
+</div>
+<div class="catalogItems">
         <%
             for (int i = 0; i < catalog.size(); i++) {
                 Item item = catalog.get(i);
+                String source = "resources_web/" + item.getImageFilename();
                 out.println(item.getItemName() + " " + item.getItemColor() + "<br>");
-                out.println("<img src=\"resources_web/" + item.getImageFilename() + "\"><br>");
-                out.println(item.getItemSize() + " " + "$" + df.format(item.getItemPrice()) + "<br>");
-        }
+                %><form id=<%=item.getItemID()%> action="ItemDetails.jsp" method="post">
+                    <input type="image" src="<%=source%>" width="150px" height="150px">
+                </form>
+                <%
+                out.println("<br>" + item.getItemSize() + " " + "$" + df.format(item.getItemPrice()) + "<br>");
+            }
         %>
-    </li>
-</ul>
+</div>
 </head>
 </body>
 </html>
