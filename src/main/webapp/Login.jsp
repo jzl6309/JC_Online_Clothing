@@ -71,7 +71,7 @@
 </ul>
     <form id="loginForm" style="alignment: center" action="LoginServlet" method="post">
         Username:<br>
-        <input type="text" name="username" placeholder="Enter your email"><br>
+        <input type="text" name="username" placeholder="Enter your username"><br>
         Password:<br>
         <input type="password" name="password" placeholder="Enter your password"><br>
         <input type="submit" value="Submit">
