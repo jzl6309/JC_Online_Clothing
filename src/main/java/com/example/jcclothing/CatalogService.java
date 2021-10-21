@@ -24,7 +24,7 @@ public class CatalogService {
 
     public ArrayList<Item> getCatalog() throws SQLException {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (Exception e) {
             e.printStackTrace();
         }

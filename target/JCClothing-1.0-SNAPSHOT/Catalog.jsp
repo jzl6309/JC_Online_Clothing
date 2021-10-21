@@ -71,7 +71,8 @@
         .optionsPane {
             position: fixed;
             left: 0;
-            background-color: ivory;
+            background-color: black;
+            color: white;
         }
     </style>
 </head>
@@ -85,7 +86,7 @@
         <input type="text" name="searchBox">
         <input id="searchImage" type="image" src="resources_web/searchIcon.png" height="21px" width="21px">
     </form> </li>
-    <li><form id="AccountLogin" action="SignIn.jsp" method="post">
+    <li><form id="AccountLogin" action="AccountLoginServlet" method="post">
         <input type="image" src="resources_web/login.png" height="21px" width="21px">
     </form></li>
     <li><form id="ShoppingCartIcon" action="ShoppingCart.jsp" method="post">
@@ -95,8 +96,8 @@
 <br>
 <div class="optionsPane">
     <p>All the options go here!</p><br>
-    <p>Sizes</p><br><br>
-    <p>Colors</p><br><br>
+    <p>Sorts</p><br><br>
+    <p>Filters</p><br><br>
     <p>etc...</p><br><br>
 </div>
 <div class="catalogItems">

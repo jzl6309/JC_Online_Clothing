@@ -1,3 +1,4 @@
+<%@ page import="com.example.jcclothing.AuthenticateService" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -67,7 +68,8 @@
         <input type="text" name="searchBox">
         <input id="searchImage" type="image" src="resources_web/searchIcon.png" height="21px" width="21px">
     </form> </li>
-    <li><form id="AccountLogin" action="SignIn.jsp" method="post">
+    <li>
+        <form id="AccountLogin" action="AccountLoginServlet" method="post">
         <input type="image" src="resources_web/login.png" height="21px" width="21px">
     </form></li>
     <li><form id="ShoppingCartIcon" action="ShoppingCart.jsp" method="post">
