@@ -5,15 +5,15 @@ public class Item {
     private int itemID;
     private String itemName;
     private String itemColor;
-    private char itemSize;
+    private char itemSex;
     private double itemPrice;
     private String imageFilename;
 
-    public Item(int ID, String name, String color, char size, double price, String filename) {
+    public Item(int ID, String name, char sex, String color, double price, String filename) {
         itemID = ID;
         itemName = name;
+        itemSex = sex;
         itemColor = color;
-        itemSize = size;
         itemPrice = price;
         imageFilename = filename;
     }
@@ -26,12 +26,10 @@ public class Item {
         itemName = name;
     }
 
+    public void setItemSex(char sex) { itemSex = sex; }
+
     public void setItemColor(String color){
         itemColor = color;
-    }
-
-    public void setItemSize(char size){
-        itemSize = size;
     }
 
     public void setItemPrice(double price) {
@@ -50,12 +48,10 @@ public class Item {
         return  itemName;
     }
 
+    public char getItemSex() { return itemSex; }
+
     public String getItemColor(){
         return  itemColor;
-    }
-
-    public char getItemSize(){
-        return itemSize;
     }
 
     public double getItemPrice(){

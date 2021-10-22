@@ -41,8 +41,8 @@ public class CatalogService {
 
         itemList = new ArrayList<>();
         while (result.next()) {
-            itemList.add(new Item(result.getInt("itemID"),result.getString("itemName"),result.getString("itemColor"),
-                    result.getString("itemSize").charAt(0),result.getDouble("itemCost"),result.getString("itemImage")));
+            itemList.add(new Item(result.getInt("itemID"),result.getString("itemName"),result.getString("itemSex").charAt(0), result.getString("itemColor"),
+                    result.getDouble("itemCost"),result.getString("itemImage")));
         }
 
 

@@ -52,7 +52,7 @@
 <body>
 <ul class="group1">
     <li id="item1"><a href="index.jsp"><img id="logo" src="resources_web/logo.png"/></a></li>
-    <li><a href="Catalog.jsp">CATALOG</a></li>
+    <li><a href="Catalog">CATALOG</a></li>
     <li><a href="/">TRACK ORDER</a></li>
     <li><a href="/">CONTACT US</a></li>
     <li><form id="searchBox" action="search.jsp" method="post">
@@ -67,5 +67,6 @@
     </form></li>
 </ul>
 <h1>Under Construction</h1>
+
 </body>
 </html>

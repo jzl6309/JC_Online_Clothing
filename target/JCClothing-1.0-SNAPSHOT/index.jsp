@@ -40,6 +40,9 @@
         #image2 {
             width: available;
         }
+        #image3 {
+            width: available;
+        }
         #AccountLogin {
             padding: 20px 20px;
         }
@@ -56,17 +59,38 @@
             font-size: larger;
             font-style: italic;
         }
+        .catalogButtons {
+            font-family: Verdana, sans-serif;
+            font-size: 1.2rem;
+            list-style-type: none;
+            height: 300px;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .catalogButtons li {
+            float: left;
+        }
+        .catalogButtons li form {
+            display: block;
+            color: white;
+            text-align: center;
+            vertical-align: center;
+            padding: 150px 300px;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
 <ul class="group1">
     <li id="item1"><a href="index.jsp"><img id="logo" src="resources_web/logo.png"/></a></li>
-    <li><a href="Catalog.jsp">CATALOG</a></li>
+    <li><a href="Catalog">CATALOG</a></li>
     <li><a href="/">TRACK ORDER</a></li>
     <li><a href="/">CONTACT US</a></li>
-    <li><form id="searchBox" action="search.jsp" method="post">
+    <li><form id="searchBox" action="Catalog" method="post">
         <input type="text" name="searchBox">
         <input id="searchImage" type="image" src="resources_web/searchIcon.png" height="21px" width="21px">
+        <input type="hidden" name="filter" value="search">
     </form> </li>
     <li>
         <form id="AccountLogin" action="AccountLoginServlet" method="post">
@@ -80,6 +104,20 @@
 <div style="text-align: center;"><img id="image1" src="resources_web/HomePageImage1.png"/></div>
 <div id="discount" style="text-align: center;">20% Discount</div>
 <div id="discount1" style="text-align: center">Enter "Bait" at checkout!</div>
+<div style="text-align: center;"><img id="image3" src="resources_web/HomePageImage3.png"/></div>
+
+<ul class="catalogButtons">
+    <li><form id="mensButton" action="Catalog" method="post">
+        <input type="hidden" name="filter" value="mens">
+        <input type="submit" value="Men's">
+    </form> </li>
+    <li><form id="womensButton" action="Catalog" method="post">
+        <input type="hidden" name="filter" value="womens">
+        <input type="submit" value="Women's">
+    </form></li>
+</ul>
+
+
 <div style="text-align: center;"><img id="image2" src="resources_web/HomePageImage2.png"/></div>
 </body>
 </html>

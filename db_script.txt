@@ -1,0 +1,58 @@
+/* 
+create user 'user'@'localhost' identified by 'password';
+grant all privileges on *.* to 'user'@'localhost';
+flush privileges;
+*/
+
+drop table Items;
+drop table Users;
+
+create table Users (
+   id int not null auto_increment,
+   username varchar(45) not null,
+   email varchar(45) not null,
+   password varchar(45) not null,
+   fname varchar(20) not null,
+   lname varchar(20) not null,
+   addr varchar(100) not null,
+   city varchar(45) not null,
+   zip int not null,
+   type int not null,
+   primary key (id)
+);
+
+create table Items (
+   itemID int not null auto_increment,
+   itemName varchar(20) not null,
+   itemSex char(1) not null,
+   itemColor varchar(10) not null,
+   itemCost numeric(5,2) not null,
+   itemImage varchar(40) not null, 
+   primary key (itemID)
+);
+
+insert into Users(username,email,password,fname,lname,addr,city,zip,type) values('admin','admin@jcc.com','password','Fred','Flintstone','123 East St.','Bedrock',12345,0);
+insert into Users(username,email,password,fname,lname,addr,city,zip,type) values('staff','staff@jcc.com','password','Cindy','Luwho','321 Who St.','Whosville',99944,1);
+insert into Users(username,email,password,fname,lname,addr.city,zip,type) values('johndoe','johndoe@jcc.com','password''John','Doe','537 Joes St.','Joestown',34765,3);
+
+insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Jeans','M','Blue',45.00,'jeansBlueM.jpeg');
+insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Jeans','M','Grey',45.00,'jeansGreyM.jpeg');
+insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Jeans','M','Light Blue',45.00,'jeansLightBlueM.jpeg');
+insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Long Sleeve','M','Black',35.00,'longSleeveBlackM.jpeg');
+insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Long Sleeve','M','Grey',35.00,'longSleeveGreyM.jpeg');
+insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Long Sleeve','M','White',35.00,'longSleeveWhiteM.jpeg');
+insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Jeans','W','Blue',40.00,'jeansBlueW.jpeg');
+insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Jeans','W','Black',40.00,'jeansBlackW.jpeg');
+insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Jeans','W','Light Blue',40.00,'jeansLightBlueW.jpeg');
+insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Long Sleeve','W','Black',35.00,'longSleeveBlackW.jpeg');
+insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Long Sleeve','W','Grey',35.00,'longSleeveGreyW.jpeg');
+insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Long Sleeve','W','White',35.00,'longSleeveWhiteW.jpeg');
+insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Hat','W','Black',20.00,'hatBlackW.jpeg');
+insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Hat','M','Black',20.00,'hatBlackM.jpeg');
+insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Hat','W','White',20.00,'hatWhiteW.jpeg');
+insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Hat','M','White',20.00,'hatWhiteM.jpeg');
+insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Short Sleeve','W','Black',25.00,'shortSleeveBlackW.jpeg');
+insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Short Sleeve','M','Black',25.00,'shortSleeveBlackM.jpeg');
+insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Short Sleeve','W','White',25.00,'shortSleeveWhiteW.jpeg');
+insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Short Sleeve','M','White',25.00,'shortSleeveWhiteM.jpeg');
+
