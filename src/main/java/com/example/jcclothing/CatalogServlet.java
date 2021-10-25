@@ -49,17 +49,30 @@ public class CatalogServlet extends HttpServlet {
             }
             else if (filter.equals("search")) {
                 String[] searchStr = req.getParameter("searchBox").split(" ");
+                ArrayList<Item> matchingTypeArr = new ArrayList<>();
+                ArrayList<Item> matchingColorArr = new ArrayList<>();
                 for (int i = 0; i < catalog.size(); i++) {
                     for (int j = 0; j < searchStr.length; j++) {
                         if (catalog.get(i).getItemName().toLowerCase().contains(searchStr[j].toLowerCase())  &&
-                            !filteredCatalog.contains(catalog.get(i))) filteredCatalog.add(catalog.get(i));
+                            !matchingTypeArr.contains(catalog.get(i))) matchingTypeArr.add(catalog.get(i));
                     }
                 }
                 for (int i = 0; i < catalog.size(); i++) {
                     for (int j = 0; j < searchStr.length; j++) {
                         if (catalog.get(i).getItemColor().toLowerCase().contains(searchStr[j].toLowerCase())  &&
-                            !filteredCatalog.contains(catalog.get(i))) filteredCatalog.add(catalog.get(i));
+                            !matchingColorArr.contains(catalog.get(i))) matchingColorArr.add(catalog.get(i));
                     }
+                }
+                if (matchingColorArr.size() > 0 && matchingTypeArr.size() > 0) {
+                    for (int i = 0; i < matchingColorArr.size(); i++){
+                        for (int j = 0; j < matchingTypeArr.size(); j++){
+                            if (matchingColorArr.get(i).getItemID() == matchingTypeArr.get(j).getItemID())
+                                filteredCatalog.add(matchingColorArr.get(i));
+                        }
+                    }
+                }
+                else {
+                    filteredCatalog = matchingColorArr.size() > matchingTypeArr.size() ? matchingColorArr : matchingTypeArr;
                 }
             }
             req.setAttribute("catalog",filteredCatalog);

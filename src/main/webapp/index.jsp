@@ -63,21 +63,19 @@
             font-family: Verdana, sans-serif;
             font-size: 1.2rem;
             list-style-type: none;
-            height: 300px;
+            height: 175px;
             margin: 0;
-            padding: 0;
+            padding: 100px 170px;
             overflow: hidden;
         }
         .catalogButtons li {
             float: left;
         }
-        .catalogButtons li form {
-            display: block;
-            color: white;
-            text-align: center;
-            vertical-align: center;
-            padding: 150px 300px;
-            text-decoration: none;
+        .catalogButtons li a {
+
+        }
+        #bottom{
+            padding-top: 50px;
         }
     </style>
 </head>
@@ -109,15 +107,16 @@
 <ul class="catalogButtons">
     <li><form id="mensButton" action="Catalog" method="post">
         <input type="hidden" name="filter" value="mens">
-        <input type="submit" value="Men's">
+        <input type="image" src="resources_web/mensButton.jpg">
     </form> </li>
     <li><form id="womensButton" action="Catalog" method="post">
         <input type="hidden" name="filter" value="womens">
-        <input type="submit" value="Women's">
+        <input type="image" src="resources_web/womensButton.jpg">
     </form></li>
 </ul>
 
 
 <div style="text-align: center;"><img id="image2" src="resources_web/HomePageImage2.png"/></div>
+<div style="text-align: center"><img id="bottom" src="resources_web/bottom.jpg"/></div>
 </body>
 </html>

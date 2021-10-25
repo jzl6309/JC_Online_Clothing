@@ -66,6 +66,10 @@
             left: 0;
             background-color: black;
             color: white;
+            width: 200px;
+        }
+        #bottom {
+            padding-top: 50px;
         }
     </style>
 </head>
@@ -89,7 +93,11 @@
 </ul>
 <br>
 <div class="optionsPane">
-    <p>All the options go here!</p><br>
+    <p><b>Department</b></p>
+    <form action="Catalog" method="post">
+        <label>Men's</label>
+        <input type="hidden" name="filter" value="mens">
+    </form>
     <p>Sorts</p><br><br>
     <p>Filters</p><br><br>
     <p>etc...</p><br><br>
@@ -100,8 +108,9 @@
                 Item item = catalog.get(i);
                 String source = "resources_web/" + item.getImageFilename();
                 out.println(item.getItemName() + " - " + item.getItemColor() + "<br>");
-                %><form id=<%=item.getItemID()%> action="ItemDetails.jsp" method="post">
+                %><form id=<%=item.getItemID()%> action="ItemDetails" method="post">
                     <input type="image" src="<%=source%>" width="150px" height="150px">
+                    <input type="hidden" name="id" value="<%=item.getItemID()%>">
                 </form>
                 <%
                 out.println("<br>" + "$" + df.format(item.getItemPrice()) + "<br><br>");
@@ -109,5 +118,6 @@
         %>
 </div>
 </head>
+<div style="text-align: center"><img id="bottom" src="resources_web/bottom.jpg"/></div>
 </body>
 </html>

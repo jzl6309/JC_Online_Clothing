@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.example.jcclothing.Item" %>
+<%@ page import="java.text.DecimalFormat" %><%--
   Created by IntelliJ IDEA.
   User: nughufer
   Date: 10/15/21
@@ -6,6 +7,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    Item item = (Item) request.getAttribute("item");
+    DecimalFormat df = new DecimalFormat("#,###.##");
+%>
 <html>
     <style>
         .group1 {
@@ -45,6 +50,9 @@
         #ShoppingCartIcon {
             padding: 20px 5px;
         }
+        #bottom {
+            padding-top: 50px;
+        }
     </style>
 <head>
     <title>Title</title>
@@ -67,6 +75,15 @@
     </form></li>
 </ul>
 <h1>Under Construction</h1>
-
+<%
+    String source = "resources_web/" + item.getImageFilename();
+    out.println(item.getItemName() + " - " + item.getItemColor() + "<br>");
+%>
+    <img src="<%=source%>" width="150px" height="150px">
+</form>
+<%
+    out.println("<br>" + "$" + df.format(item.getItemPrice()) + "<br><br>");
+%>
+<div style="text-align: center"><img id="bottom" src="resources_web/bottom.jpg"/></div>
 </body>
 </html>
