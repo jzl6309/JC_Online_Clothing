@@ -50,5 +50,15 @@ public class CatalogService {
         return itemList;
     }
 
+    public Item getItem(int id){
+        int i = 0;
+        while (i < itemList.size()) {
+            if (itemList.get(i).getItemID() == id) return itemList.get(i);
+            i++;
+        }
+        return null;
+    }
+
+
 
 }

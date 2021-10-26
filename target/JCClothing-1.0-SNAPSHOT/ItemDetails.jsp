@@ -53,9 +53,12 @@
         #bottom {
             padding-top: 50px;
         }
+        #item {
+            float: left;
+        }
     </style>
 <head>
-    <title>Title</title>
+    <title>Item Details</title>
 </head>
 <body>
 <ul class="group1">
@@ -75,6 +78,7 @@
     </form></li>
 </ul>
 <h1>Under Construction</h1>
+<div id="item">
 <%
     String source = "resources_web/" + item.getImageFilename();
     out.println(item.getItemName() + " - " + item.getItemColor() + "<br>");
@@ -84,6 +88,17 @@
 <%
     out.println("<br>" + "$" + df.format(item.getItemPrice()) + "<br><br>");
 %>
+</div>
+<form action="ShoppingCart" method="post">
+    <select name="size" id="size">
+        <option value="L">L</option>
+        <option value="M">M</option>
+        <option value="S">S</option>
+    </select>
+    <input type="hidden" name="item" value="<%=item.getItemID()%>">
+    <input type="number" name="quantity" value="1">
+    <input type="submit" value="Add to Cart">
+</form>
 <div style="text-align: center"><img id="bottom" src="resources_web/bottom.jpg"/></div>
 </body>
 </html>
