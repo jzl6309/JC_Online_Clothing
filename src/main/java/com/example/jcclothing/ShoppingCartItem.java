@@ -23,4 +23,6 @@ public class ShoppingCartItem {
     public int getQuantity() {
         return quantity;
     }
+
+    public void updateQuantity(int n) { quantity = n; }
 }

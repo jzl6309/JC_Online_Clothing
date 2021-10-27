@@ -38,4 +38,13 @@ public class ShoppingCart {
     public ArrayList<ShoppingCartItem> getShoppingCart() {
         return shoppingCart;
     }
+
+    public int size(){
+        return shoppingCart.size();
+    }
+
+    public ShoppingCartItem get(int i) {
+        return shoppingCart.get(i);
+    }
+
 }

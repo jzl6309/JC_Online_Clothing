@@ -64,7 +64,7 @@
 <ul class="group1">
     <li id="item1"><a href="index.jsp"><img id="logo" src="resources_web/logo.png"/></a></li>
     <li><a href="Catalog">CATALOG</a></li>
-    <li><a href="/">TRACK ORDER</a></li>
+    <li><a href="TrackOrder.jsp">TRACK ORDER</a></li>
     <li><a href="/">CONTACT US</a></li>
     <li><form id="searchBox" action="search.jsp" method="post">
         <input type="text" name="searchBox">
@@ -96,7 +96,7 @@
         <option value="S">S</option>
     </select>
     <input type="hidden" name="item" value="<%=item.getItemID()%>">
-    <input type="number" name="quantity" value="1">
+    <input type="number" name="quantity" value="1" size="3">
     <input type="submit" value="Add to Cart">
 </form>
 <div style="text-align: center"><img id="bottom" src="resources_web/bottom.jpg"/></div>

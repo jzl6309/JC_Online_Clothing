@@ -89,22 +89,30 @@
             <th>Size</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th></th>
         </tr>
     <%
         for (int i = 0; i < shoppingCart.size(); i++) {
             ShoppingCartItem item = shoppingCart.get(i);
     %>
         <tr>
-            <td><img src="resources_web/<%=item.getItem().getImageFilename()%>"></td>
-            <td><%=item.getItem().getItemName()%></td>
-            <td><%=item.getSize()%></td>
-            <td><%=df.format(item.getItem().getItemPrice()*item.getQuantity())%></td>
-            <td><%=item.getQuantity()%></td>
+            <form name="remove" action="ShoppingCart" method="post">
+                <td><img src="resources_web/<%=item.getItem().getImageFilename()%>"></td>
+                <td><%=item.getItem().getItemName()%></td>
+                <td><%=item.getSize()%></td>
+                <td><%=df.format(item.getItem().getItemPrice()*item.getQuantity())%></td>
+                <td><%=item.getQuantity()%></td>
+                <td><input type="submit" value="Remove"></td>
+                <input type="hidden" name="removeItem" value="<%=item.getItem().getItemID()%>">
+            </form>
         </tr>
     <%
         }
     %>
     </table>
+    <form name="checkout" action="Checkout.jsp" method="post">
+        <input type="submit" value="Checkout">
+    </form>
 <div style="text-align: center"><img id="bottom" src="resources_web/bottom.jpg"/></div>
 </body>
 </html>

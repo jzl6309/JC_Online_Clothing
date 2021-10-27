@@ -13,7 +13,7 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.text.DecimalFormat" %>
 <%
-    DecimalFormat df = new DecimalFormat("#,###.##");
+    DecimalFormat df = new DecimalFormat("$#,###.00");
     ArrayList<Item> catalog = (ArrayList<Item>) request.getAttribute("catalog");
 %>
 <!DOCTYPE html>
@@ -113,7 +113,7 @@
                     <input type="hidden" name="id" value="<%=item.getItemID()%>">
                 </form>
                 <%
-                out.println("<br>" + "$" + df.format(item.getItemPrice()) + "<br><br>");
+                out.println("<br>" + df.format(item.getItemPrice()) + "<br><br>");
             }
         %>
 </div>

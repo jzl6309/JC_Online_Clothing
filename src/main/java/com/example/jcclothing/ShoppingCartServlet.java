@@ -29,7 +29,16 @@ public class ShoppingCartServlet extends HttpServlet {
             ShoppingCartItem shItem = new ShoppingCartItem(item, size, quantity);
 
             ShoppingCart cart = ShoppingCart.getInstance();
-            cart.add(shItem);
+
+            boolean update = false;
+            for (int i = 0; i < cart.size(); i++) {
+                if (cart.get(i).getItem().getItemID() == shItem.getItem().getItemID()) {
+                    cart.get(i).updateQuantity(cart.get(i).getQuantity()+shItem.getQuantity());
+                    update = true;
+                }
+            }
+
+            if (!update) cart.add(shItem);
 
             req.setAttribute("item", item);
             RequestDispatcher view = req.getRequestDispatcher("ItemDetails.jsp");

@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet{
         }
         RequestDispatcher view = null;
         if (auth) {
-            view = req.getRequestDispatcher("Catalog.jsp");
+            view = req.getRequestDispatcher("index.jsp");
         }
         else {
             view = req.getRequestDispatcher("Login.jsp");
