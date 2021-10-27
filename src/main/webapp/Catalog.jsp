@@ -113,7 +113,7 @@
                     <input type="hidden" name="id" value="<%=item.getItemID()%>">
                 </form>
                 <%
-                out.println("<br>" + "$" + df.format(item.getItemPrice()) + "<br><br>");
+                out.println("<br>" + df.format(item.getItemPrice()) + "<br><br>");
             }
         %>
 </div>

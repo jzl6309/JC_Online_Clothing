@@ -103,6 +103,7 @@
                 <td><%=df.format(item.getItem().getItemPrice()*item.getQuantity())%></td>
                 <td><%=item.getQuantity()%></td>
                 <td><input type="submit" value="Remove"></td>
+                <input type="hidden" name="removeItem" value="<%=item.getItem().getItemID()%>">
             </form>
         </tr>
     <%
