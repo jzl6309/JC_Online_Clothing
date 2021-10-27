@@ -83,7 +83,7 @@
 <ul class="group1">
     <li id="item1"><a href="index.jsp"><img id="logo" src="resources_web/logo.png"/></a></li>
     <li><a href="Catalog">CATALOG</a></li>
-    <li><a href="/">TRACK ORDER</a></li>
+    <li><a href="TrackOrder.jsp">TRACK ORDER</a></li>
     <li><a href="/">CONTACT US</a></li>
     <li><form id="searchBox" action="Catalog" method="post">
         <input type="text" name="searchBox">
