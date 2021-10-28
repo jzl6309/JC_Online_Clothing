@@ -44,7 +44,7 @@
         }
         .footer {
             position: absolute;
-            align-self: center;
+            width: 100%;
             bottom: 0;
         }
     </style>

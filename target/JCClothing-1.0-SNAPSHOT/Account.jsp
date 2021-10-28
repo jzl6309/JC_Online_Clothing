@@ -68,8 +68,15 @@
 </ul>
 
 <h1>Under Construction!</h1>
-<p>Hello <%out.println(AuthenticateService.user.getUser()+"!");%></p>
+<p>Hello <%=AuthenticateService.user.getFname()%>!</p>
 <p>Account Info:<br>
-    <%out.println(AuthenticateService.user.getEmail());%></p>
+    <%=AuthenticateService.user.getUser()%><br>
+    <%=AuthenticateService.user.getEmail()%><br><br>
+    Address:<br>
+    <%=AuthenticateService.user.getAddr()%><br>
+    <%=AuthenticateService.user.getCity()%>,
+    <%=AuthenticateService.user.getState()%><br>
+    <%=AuthenticateService.user.getZip()%>
+</p>
 </body>
 </html>
