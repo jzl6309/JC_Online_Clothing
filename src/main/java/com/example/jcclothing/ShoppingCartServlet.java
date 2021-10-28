@@ -52,6 +52,23 @@ public class ShoppingCartServlet extends HttpServlet {
             RequestDispatcher view = req.getRequestDispatcher("ShoppingCart.jsp");
             view.forward(req, resp);
         }
+        else if (req.getParameter("updateItem") != null) {
+            ShoppingCart cart = ShoppingCart.getInstance();
+
+            for (int i = 0; i < cart.size(); i++) {
+                if (cart.get(i).getItem().getItemID() == Integer.parseInt(req.getParameter("updateItem"))) {
+                    if (Integer.parseInt(req.getParameter("quantity")) == 0) {
+                        cart.remove(Integer.parseInt(req.getParameter("updateItem")));
+                    }
+                    else {
+                        cart.get(i).updateQuantity(Integer.parseInt(req.getParameter("quantity")));
+                    }
+                    break;
+                }
+            }
+            RequestDispatcher view = req.getRequestDispatcher("ShoppingCart.jsp");
+            view.forward(req, resp);
+        }
 
     }
 }

@@ -47,35 +47,55 @@
         #ShoppingCartIcon {
             padding: 20px 5px;
         }
+        #loginForm {
+            position: absolute;
+            top: 35%;
+            left: 35%;
+        }
+        .footer {
+            position: absolute;
+            align-self: center;
+            bottom: 0;
+        }
     </style>
 <head>
-    <title>Login</title>
+    <title>JC Clothing - Login</title>
 
 </head>
 <body>
 <ul class="group1">
     <li id="item1"><a href="index.jsp"><img id="logo" src="resources_web/logo.png"/></a></li>
     <li><a href="Catalog">CATALOG</a></li>
-    <li><a href="/">TRACK ORDER</a></li>
-    <li><a href="/">CONTACT US</a></li>
+    <li><a href="TrackOrder.jsp">TRACK ORDER</a></li>
+    <li><a href="Contact.jsp">CONTACT US</a></li>
     <li><form id="searchBox" action="search.jsp" method="post">
         <input type="text" name="searchBox">
         <input id="searchImage" type="image" src="resources_web/searchIcon.png" height="21px" width="21px">
     </form> </li>
-    <li><form id="AccountLogin" action="A" method="post">
+    <li><form id="AccountLogin" action="AccountLoginServlet" method="post">
         <input type="image" src="resources_web/login.png" height="21px" width="21px">
     </form></li>
     <li><form id="ShoppingCartIcon" action="ShoppingCart.jsp" method="post">
-        <input type="image" src="resources_web/shoppingCart.png" height="21px" width="21px">ty
+        <input type="image" src="resources_web/shoppingCart.png" height="21px" width="21px">
     </form></li>
 </ul>
-    <form id="loginForm" style="alignment: center" action="LoginServlet" method="post">
+<div id="loginForm">
+    <form action="LoginServlet" method="post">
         Username:<br>
         <input type="text" name="username" placeholder="Enter your username"><br>
         Password:<br>
         <input type="password" name="password" placeholder="Enter your password"><br>
         <input type="submit" value="Submit">
-
     </form>
+    <%
+        if (request.getAttribute("invalid") != null) {
+    %>
+    <p><%=request.getAttribute("invalid")%></p>
+    <%
+        }
+    %>
+</div>
+
+<div class="footer"><img id="bottom" src="resources_web/bottom.jpg"/></div>
 </body>
 </html>

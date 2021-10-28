@@ -59,7 +59,7 @@
         .catalogItems {
             position: relative;
             float: left;
-            padding-left: 400px;
+            padding-left: 250px;
         }
         .optionsPane {
             position: fixed;
@@ -71,14 +71,17 @@
         #bottom {
             padding-top: 50px;
         }
+        td {
+            padding: 50px;
+        }
     </style>
 </head>
 <body>
 <ul class="group1">
     <li id="item1"><a href="index.jsp"><img id="logo" src="resources_web/logo.png"/></a></li>
     <li><a href="Catalog">CATALOG</a></li>
-    <li><a href="/">TRACK ORDER</a></li>
-    <li><a href="/">CONTACT US</a></li>
+    <li><a href="TrackOrder.jsp">TRACK ORDER</a></li>
+    <li><a href="Contact.jsp">CONTACT US</a></li>
     <li><form id="searchBox" action="Catalog" method="post">
         <input type="text" name="searchBox">
         <input id="searchImage" type="image" src="resources_web/searchIcon.png" height="21px" width="21px">
@@ -103,19 +106,60 @@
     <p>etc...</p><br><br>
 </div>
 <div class="catalogItems">
+    <table>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
         <%
-            for (int i = 0; i < catalog.size(); i++) {
+            for (int i = 0; i < catalog.size(); i+=3) {
                 Item item = catalog.get(i);
                 String source = "resources_web/" + item.getImageFilename();
-                out.println(item.getItemName() + " - " + item.getItemColor() + "<br>");
-                %><form id=<%=item.getItemID()%> action="ItemDetails" method="post">
+
+                Item item2 = null;
+                String source2 = null;
+                Item item3 = null;
+                String source3 = null;
+        %>
+        <tr>
+                <td><%=item.getItemName() + " - " + item.getItemColor()%><br>
+              <form id=<%=item.getItemID()%> action="ItemDetails" method="post">
                     <input type="image" src="<%=source%>" width="150px" height="150px">
                     <input type="hidden" name="id" value="<%=item.getItemID()%>">
-                </form>
-                <%
-                out.println("<br>" + df.format(item.getItemPrice()) + "<br><br>");
-            }
+                </form><br>
+                <%=df.format(item.getItemPrice())%></td>
+        <%
+            if (i+1 < catalog.size()) {
+                item2 = catalog.get(i+1);
+                source2 = "resources_web/" + item2.getImageFilename();
         %>
+                <td><%=item2.getItemName() + " - " + item2.getItemColor()%><br>
+                    <form id=<%=item2.getItemID()%> action="ItemDetails" method="post">
+                        <input type="image" src="<%=source2%>" width="150px" height="150px">
+                        <input type="hidden" name="id" value="<%=item2.getItemID()%>">
+                    </form><br>
+                    <%=df.format(item2.getItemPrice())%>
+                </td>
+        <%
+            }
+            if (i+2 < catalog.size()) {
+                item3 = catalog.get(i+2);
+                source3 = "resources_web/" + item3.getImageFilename();
+        %>
+                <td><%=item3.getItemName() + " - " + item3.getItemColor()%><br>
+                    <form id=<%=item3.getItemID()%> action="ItemDetails" method="post">
+                        <input type="image" src="<%=source3%>" width="150px" height="150px">
+                        <input type="hidden" name="id" value="<%=item3.getItemID()%>">
+                    </form><br>
+                    <%=df.format(item3.getItemPrice())%>
+                </td>
+        </tr>
+        <%
+            }
+        }
+        %>
+
+    </table>
 </div>
 </head>
 <div style="text-align: center"><img id="bottom" src="resources_web/bottom.jpg"/></div>

@@ -65,7 +65,7 @@
     <li id="item1"><a href="index.jsp"><img id="logo" src="resources_web/logo.png"/></a></li>
     <li><a href="Catalog">CATALOG</a></li>
     <li><a href="TrackOrder.jsp">TRACK ORDER</a></li>
-    <li><a href="/">CONTACT US</a></li>
+    <li><a href="Contact.jsp">CONTACT US</a></li>
     <li><form id="searchBox" action="search.jsp" method="post">
         <input type="text" name="searchBox">
         <input id="searchImage" type="image" src="resources_web/searchIcon.png" height="21px" width="21px">

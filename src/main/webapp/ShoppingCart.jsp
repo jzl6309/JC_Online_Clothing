@@ -55,6 +55,9 @@
         #item {
             float: left;
         }
+        td {
+            padding: 15px;
+        }
     </style>
 <head>
     <title>Shopping Cart</title>
@@ -63,16 +66,16 @@
         <li id="item1"><a href="index.jsp"><img id="logo" src="resources_web/logo.png"/></a></li>
         <li><a href="Catalog">CATALOG</a></li>
         <li><a href="TrackOrder.jsp">TRACK ORDER</a></li>
-        <li><a href="/">CONTACT US</a></li>
+        <li><a href="Contact.jsp">CONTACT US</a></li>
         <li><form id="searchBox" action="search.jsp" method="post">
             <input type="text" name="searchBox">
             <input id="searchImage" type="image" src="resources_web/searchIcon.png" height="21px" width="21px">
         </form> </li>
-        <li><form id="AccountLogin" action="A" method="post">
+        <li><form id="AccountLogin" action="AccountLoginServlet" method="post">
             <input type="image" src="resources_web/login.png" height="21px" width="21px">
         </form></li>
         <li><form id="ShoppingCartIcon" action="ShoppingCart.jsp" method="post">
-            <input type="image" src="resources_web/shoppingCart.png" height="21px" width="21px">ty
+            <input type="image" src="resources_web/shoppingCart.png" height="21px" width="21px">
         </form></li>
     </ul>
 <body>
@@ -90,20 +93,27 @@
             <th>Price</th>
             <th>Quantity</th>
             <th></th>
+            <th></th>
         </tr>
     <%
         for (int i = 0; i < shoppingCart.size(); i++) {
             ShoppingCartItem item = shoppingCart.get(i);
     %>
         <tr>
-            <form name="remove" action="ShoppingCart" method="post">
-                <td><img src="resources_web/<%=item.getItem().getImageFilename()%>"></td>
-                <td><%=item.getItem().getItemName()%></td>
-                <td><%=item.getSize()%></td>
-                <td><%=df.format(item.getItem().getItemPrice()*item.getQuantity())%></td>
-                <td><%=item.getQuantity()%></td>
-                <td><input type="submit" value="Remove"></td>
-                <input type="hidden" name="removeItem" value="<%=item.getItem().getItemID()%>">
+            <td><img src="resources_web/<%=item.getItem().getImageFilename()%>"></td>
+            <td><%=item.getItem().getItemName()%></td>
+            <td><%=item.getSize()%></td>
+            <td><%=df.format(item.getItem().getItemPrice()*item.getQuantity())%></td>
+            <form action="ShoppingCart" method="post">
+            <td>
+                <input name="quantity" type="number" size="3" value="<%=item.getQuantity()%>">
+                <input type="hidden" name="updateItem" value="<%=item.getItem().getItemID()%>">
+            </td>
+            <td><input type="submit" value="Update">
+            </td></form>
+             <form name="remove" action="ShoppingCart" method="post">
+            <td><input type="submit" value="Remove"></td>
+            <input type="hidden" name="removeItem" value="<%=item.getItem().getItemID()%>">
             </form>
         </tr>
     <%

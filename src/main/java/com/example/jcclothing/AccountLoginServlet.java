@@ -17,14 +17,16 @@ public class AccountLoginServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        RequestDispatcher view = null;
+
         if (AuthenticateService.loggedIn){
-            RequestDispatcher view = req.getRequestDispatcher("Account.jsp");
-            view.forward(req,resp);
+            view = req.getRequestDispatcher("Account.jsp");
         }
         else{
-            RequestDispatcher view = req.getRequestDispatcher("Login.jsp");
-            view.forward(req,resp);
+            view = req.getRequestDispatcher("Login.jsp");
         }
+        view.forward(req,resp);
     }
 
 }
