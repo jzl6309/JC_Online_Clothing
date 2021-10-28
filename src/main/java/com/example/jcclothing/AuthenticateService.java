@@ -39,7 +39,8 @@ public class AuthenticateService {
                     result.getString("password").equals(password)) {
 
                 user = new User(result.getInt("id"),username, result.getString("email"),
-                    result.getInt("type"));
+                       result.getString("fname"), result.getString("lname"), result.getString("addr"),
+                       result.getString("city"), result.getString("state"), result.getInt("zip"), result.getInt("type"));
                 loggedIn = true;
                 return true;
             }

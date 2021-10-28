@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet{
         }
         RequestDispatcher view = null;
         if (auth) {
-            view = req.getRequestDispatcher("index.jsp");
+            view = req.getRequestDispatcher("Account.jsp");
         }
         else {
             req.setAttribute("invalid","Invalid Login. Please Try Again.");

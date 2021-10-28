@@ -36,9 +36,6 @@
             vertical-align: center;
             padding-top: 22px;
         }
-        #loginForm{
-            position: center;
-        }
         #AccountLogin {
             padding: 20px 20px;
         }
@@ -47,7 +44,7 @@
         }
     </style>
 <head>
-    <title>Account</title>
+    <title>JC Clothing - Account</title>
 </head>
 <body>
 <ul class="group1">
@@ -68,8 +65,15 @@
 </ul>
 
 <h1>Under Construction!</h1>
-<p>Hello <%out.println(AuthenticateService.user.getUser()+"!");%></p>
+<p>Hello <%=AuthenticateService.user.getFname()%>!</p>
 <p>Account Info:<br>
-    <%out.println(AuthenticateService.user.getEmail());%></p>
+    <%=AuthenticateService.user.getUser()%><br>
+    <%=AuthenticateService.user.getEmail()%><br><br>
+    Address:<br>
+    <%=AuthenticateService.user.getAddr()%><br>
+    <%=AuthenticateService.user.getCity()%>,
+    <%=AuthenticateService.user.getState()%><br>
+    <%=AuthenticateService.user.getZip()%>
+</p>
 </body>
 </html>
