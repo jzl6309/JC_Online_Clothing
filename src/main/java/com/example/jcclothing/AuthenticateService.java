@@ -46,9 +46,12 @@ public class AuthenticateService {
             }
 
         }
-
-
         return false;
+    }
+
+    public static void logout() {
+        user = null;
+        loggedIn = false;
     }
 
 }

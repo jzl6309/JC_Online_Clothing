@@ -49,13 +49,26 @@
         }
         #loginForm {
             position: absolute;
-            top: 35%;
+            top: 25%;
             left: 35%;
+            padding-bottom: 100px;
         }
         .footer {
-            position: absolute;
+            position: fixed;
             align-self: center;
             bottom: 0;
+            padding-top: 100px;
+        }
+        .options {
+            position: fixed;
+            right: 150px;
+            top: 150px;
+        }
+        .buttons {
+            background: black;
+            color: white;
+            height: 75px;
+            width: 150px;
         }
     </style>
 <head>
@@ -85,7 +98,7 @@
         <input type="text" name="username" placeholder="Enter your username"><br>
         Password:<br>
         <input type="password" name="password" placeholder="Enter your password"><br>
-        <input type="submit" value="Submit">
+        <input class="buttons" type="submit" value="Login">
     </form>
     <%
         if (request.getAttribute("invalid") != null) {
@@ -95,7 +108,11 @@
         }
     %>
 </div>
-
+<div class="options">
+    <form action="SignUp.jsp" method="post">
+        <input class="buttons" type="submit" value="Sign Up">
+    </form>
+</div>
 <div class="footer"><img id="bottom" src="resources_web/bottom.jpg"/></div>
 </body>
 </html>

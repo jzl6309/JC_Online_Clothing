@@ -42,6 +42,17 @@
         #ShoppingCartIcon {
             padding: 20px 5px;
         }
+        .options {
+            position: fixed;
+            right: 50%;
+            top: 150px;
+        }
+        .buttons {
+            background: black;
+            color: white;
+            height: 75px;
+            width: 150px;
+        }
     </style>
 <head>
     <title>JC Clothing - Account</title>
@@ -56,7 +67,7 @@
         <input type="text" name="searchBox">
         <input id="searchImage" type="image" src="resources_web/searchIcon.png" height="21px" width="21px">
     </form> </li>
-    <li><form id="AccountLogin" action="A" method="post">
+    <li><form id="AccountLogin" action="AccountLoginServlet" method="post">
         <input type="image" src="resources_web/login.png" height="21px" width="21px">
     </form></li>
     <li><form id="ShoppingCartIcon" action="ShoppingCart.jsp" method="post">
@@ -75,5 +86,15 @@
     <%=AuthenticateService.user.getState()%><br>
     <%=AuthenticateService.user.getZip()%>
 </p>
+<div class="options">
+    <form action="AccountServlet" method="post">
+        <input type="hidden" name="options" value="logout">
+        <input class="buttons" type="submit" value="Logout">
+    </form>
+    <form action="AccountServlet" method="post">
+        <input type="hidden" name="options" value="updateAddress">
+        <input class="buttons" type="submit" value="Update Info">
+    </form>
+</div>
 </body>
 </html>

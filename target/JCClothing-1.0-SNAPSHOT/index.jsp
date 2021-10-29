@@ -71,9 +71,6 @@
         .catalogButtons li {
             float: left;
         }
-        .catalogButtons li a {
-
-        }
         #bottom{
             padding-top: 50px;
         }
