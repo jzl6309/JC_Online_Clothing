@@ -93,33 +93,36 @@
     </form></li>
 </ul>
 <div class="signup">
-    <form action="SignIn" method="post">
+    <form action="SignUp" method="post">
         Name:<br>
-        <input type="text" placeholder="First Name"><br>
-        <input type="text" placeholder="Last Name"><br>
+        <input name="fname" type="text" placeholder="First Name"><br>
+        <input name="lname" type="text" placeholder="Last Name"><br>
         Street Address:<br>
-        <input type="text" placeholder="Street Address"><br>
+        <input name="addr" type="text" placeholder="Street Address"><br>
         City:<br>
-        <input type="text" placeholder="City"><br>
+        <input name="city" type="text" placeholder="City"><br>
         State:<br>
-        <input type="text" placeholder="State"><br>
+        <input name="state" type="text" placeholder="State"><br>
         Zip:<br>
-        <input type="text" placeholder="Zip"><br>
+        <input name="zip" type="text" placeholder="Zip"><br>
         <div class="rightSignup">
             Username:<br>
-            <input type="text" placeholder="Username"><br>
+            <input name="username" type="text" placeholder="Username"><br>
             Email:<br>
-            <input type="email" placeholder="Email"><br>
+            <input name="email" type="email" placeholder="Email"><br>
             Password:<br>
-            <input type="password" placeholder="Password"><br>
+            <input name="password" type="password" placeholder="Password"><br>
             Confirm:<br>
-            <input type="password" placeholder="Password"><br>
+            <input name="confirm" type="password" placeholder="Password"><br>
             <input class="button" type="submit" value="Submit"><br>
         </div>
     </form>
     <form id="loginButton" action="Login.jsp">
         <input class="button" type="submit" value="Login">
     </form>
+    <% if (request.getAttribute("error") != null) { %>
+        <p><%=request.getAttribute("error")%></p>
+    <% } %>
 </div>
 
 </body>

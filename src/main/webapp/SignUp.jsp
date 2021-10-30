@@ -93,7 +93,7 @@
     </form></li>
 </ul>
 <div class="signup">
-    <form action="SignIn" method="post">
+    <form action="SignUp" method="post">
         Name:<br>
         <input name="fname" type="text" placeholder="First Name"><br>
         <input name="lname" type="text" placeholder="Last Name"><br>
@@ -120,6 +120,9 @@
     <form id="loginButton" action="Login.jsp">
         <input class="button" type="submit" value="Login">
     </form>
+    <% if (request.getAttribute("error") != null) { %>
+        <p><%=request.getAttribute("error")%></p>
+    <% } %>
 </div>
 
 </body>
