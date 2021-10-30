@@ -57,22 +57,32 @@
             padding: 20px 5px;
         }
         .catalogItems {
-            position: relative;
             float: left;
-            padding-left: 250px;
+            top: 150px;
+            padding-left: 200px;
         }
         .optionsPane {
-            position: fixed;
-            left: 0;
-            background-color: black;
-            color: white;
+            background: black;
+            float: left;
             width: 200px;
+            height: 400px;
+        }
+        .buttons {
+            border-width: 0;
+            border-color: black;
+            background: black;
+            color: white;
+            padding-left: 50px;
+            text-decoration: underline;
         }
         #bottom {
             padding-top: 50px;
         }
         td {
             padding: 50px;
+        }
+        p {
+            color: white;
         }
     </style>
 </head>
@@ -98,12 +108,35 @@
 <div class="optionsPane">
     <p><b>Department</b></p>
     <form action="Catalog" method="post">
-        <label>Men's</label>
         <input type="hidden" name="filter" value="mens">
+        <input class="buttons" type="submit" value="Men's">
     </form>
-    <p>Sorts</p><br><br>
-    <p>Filters</p><br><br>
-    <p>etc...</p><br><br>
+    <form action="Catalog" method="post">
+        <input type="hidden" name="filter" value="womens">
+        <input class="buttons" type="submit" value="Women's">
+    </form>
+    <p><b>Sort</b></p>
+    <form action="Catalog" method="post">
+        <input type="hidden" name="sort" value="priceHighLow">
+        <input class="buttons" type="submit" value="Price: High to Low">
+    </form>
+    <form action="Catalog" method="post">
+        <input type="hidden" name="sort" value="priceLowHigh">
+        <input class="buttons" type="submit" value="Price: Low to High">
+    </form>
+    <form action="Catalog" method="post">
+        <input type="hidden" name="sort" value="bestSelling">
+        <input class="buttons" type="submit" value="Best Selling">
+    </form>
+    <form action="Catalog" method="post">
+        <input type="hidden" name="sort" value="az">
+        <input class="buttons" type="submit" value="Name: A-Z">
+    </form>
+    <form action="Catalog" method="post">
+        <input type="hidden" name="sort" value="za">
+        <input class="buttons" type="submit" value="Name: Z-A">
+    </form>
+    <p><b>Filters</b></p><br><br>
 </div>
 <div class="catalogItems">
     <table>
