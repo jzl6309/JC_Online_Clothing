@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Item item = (Item) request.getAttribute("item");
-    DecimalFormat df = new DecimalFormat("#,###.##");
+    DecimalFormat df = new DecimalFormat("$#,###.##");
 %>
 <html>
     <style>
@@ -41,9 +41,6 @@
             vertical-align: center;
             padding-top: 22px;
         }
-        #loginForm{
-            position: center;
-        }
         #AccountLogin {
             padding: 20px 20px;
         }
@@ -53,8 +50,14 @@
         #bottom {
             padding-top: 50px;
         }
-        #item {
-            float: left;
+        td {
+            padding: 15px;
+        }
+        .buttons {
+            background: black;
+            color: white;
+            height: 25px;
+            width: 85px;
         }
     </style>
 <head>
@@ -70,35 +73,40 @@
         <input type="text" name="searchBox">
         <input id="searchImage" type="image" src="resources_web/searchIcon.png" height="21px" width="21px">
     </form> </li>
-    <li><form id="AccountLogin" action="A" method="post">
+    <li><form id="AccountLogin" action="AccountLoginServlet" method="post">
         <input type="image" src="resources_web/login.png" height="21px" width="21px">
     </form></li>
     <li><form id="ShoppingCartIcon" action="ShoppingCart.jsp" method="post">
         <input type="image" src="resources_web/shoppingCart.png" height="21px" width="21px">ty
     </form></li>
 </ul>
-<h1>Under Construction</h1>
-<div id="item">
-<%
-    String source = "resources_web/" + item.getImageFilename();
-    out.println(item.getItemName() + " - " + item.getItemColor() + "<br>");
-%>
-    <img src="<%=source%>" width="150px" height="150px">
-</form>
-<%
-    out.println("<br>" + "$" + df.format(item.getItemPrice()) + "<br><br>");
-%>
-</div>
-<form action="ShoppingCart" method="post">
-    <select name="size" id="size">
-        <option value="L">L</option>
-        <option value="M">M</option>
-        <option value="S">S</option>
-    </select>
-    <input type="hidden" name="item" value="<%=item.getItemID()%>">
-    <input type="number" name="quantity" value="1" size="3">
-    <input type="submit" value="Add to Cart">
-</form>
+<h1>Item Details</h1>
+    <table>
+        <tr>
+            <th>Details</th>
+            <th>Size</th>
+            <th>Quantity</th>
+        </tr>
+        <tr>
+            <td>
+            <%String source = "resources_web/" + item.getImageFilename();%>
+            <%=item.getItemName() + " - " + item.getItemColor()%><br>
+            <img src="<%=source%>" width="150px" height="150px"><br>
+            <%=df.format(item.getItemPrice())%><br><br></td>
+            <form action="ShoppingCart" method="post">
+                <td>
+                    <select name="size" id="size">
+                        <option value="L">L</option>
+                        <option value="M">M</option>
+                        <option value="S">S</option>
+                    </select>
+                </td>
+                    <input type="hidden" name="item" value="<%=item.getItemID()%>">
+                <td><input type="number" name="quantity" value="1" size="3"></td>
+                <td><input class="buttons" type="submit" value="Add to Cart"></td>
+            </form>
+        </tr>
+    </table>
 <div style="text-align: center"><img id="bottom" src="resources_web/bottom.jpg"/></div>
 </body>
 </html>

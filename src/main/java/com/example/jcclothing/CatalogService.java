@@ -9,6 +9,7 @@ public class CatalogService {
     private final String USER = "user";
     private final String PW = "password";
     private ArrayList<Item> itemList;
+    private ArrayList<Item> filteredList;
     private static CatalogService instance;
 
     private CatalogService(){}
@@ -59,6 +60,9 @@ public class CatalogService {
         return null;
     }
 
+    public void setFilteredList(ArrayList<Item> list) { filteredList = list; }
 
-
+    public ArrayList<Item> getFilteredList() {
+        return filteredList;
+    }
 }

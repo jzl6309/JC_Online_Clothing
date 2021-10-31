@@ -1,5 +1,7 @@
 package com.example.jcclothing;
 
+import java.util.Comparator;
+
 public class Item {
 
     private int itemID;
@@ -62,4 +64,31 @@ public class Item {
         return imageFilename;
     }
 
+    public static class sortByPriceHighToLow implements Comparator<Item> {
+
+        public int compare(Item i1, Item i2) {
+            return i1.getItemPrice() < i2.getItemPrice() ? 1 : -1;
+        }
+    }
+
+    public static class sortByPriceLowToHigh implements Comparator<Item> {
+
+        public int compare(Item i1, Item i2) {
+            return i1.getItemPrice() > i2.getItemPrice() ? 1 : -1;
+        }
+    }
+
+    public static class sortByNameAZ implements Comparator<Item> {
+
+        public int compare(Item i1, Item i2) {
+            return i1.getItemName().compareTo(i2.getItemName());
+        }
+    }
+
+    public static class sortByNameZA implements Comparator<Item> {
+
+        public int compare(Item i1, Item i2) {
+            return -(i1.getItemName().compareTo(i2.getItemName()));
+        }
+    }
 }

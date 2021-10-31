@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 @WebServlet(
         name = "Catalog",
@@ -27,6 +29,7 @@ public class CatalogServlet extends HttpServlet {
         CatalogService catalogService = CatalogService.getInstance();
 
         ArrayList<Item> catalog = null;
+
         try {
             catalog = catalogService.getCatalog();
         } catch (SQLException e) {
@@ -34,6 +37,7 @@ public class CatalogServlet extends HttpServlet {
         }
 
         String filter = req.getParameter("filter");
+        String sort = req.getParameter("sort");
         ArrayList<Item> filteredCatalog = new ArrayList<>();
 
         if (filter != null) {
@@ -75,7 +79,27 @@ public class CatalogServlet extends HttpServlet {
                     filteredCatalog = matchingColorArr.size() > matchingTypeArr.size() ? matchingColorArr : matchingTypeArr;
                 }
             }
+            catalogService.setFilteredList(filteredCatalog);
             req.setAttribute("catalog",filteredCatalog);
+        }
+        else if (sort != null) {
+            if (catalogService.getFilteredList() != null) catalog = catalogService.getFilteredList();
+            if (sort.equals("priceHighLow")) {
+                Collections.sort(catalog, new Item.sortByPriceHighToLow());
+            }
+            else if (sort.equals("priceLowHigh")) {
+                Collections.sort(catalog, new Item.sortByPriceLowToHigh());
+            }
+            else if (sort.equals("bestSelling")) {
+
+            }
+            else if (sort.equals("az")) {
+                Collections.sort(catalog, new Item.sortByNameAZ());
+            }
+            else if (sort.equals("za")) {
+                Collections.sort(catalog, new Item.sortByNameZA());
+            }
+            req.setAttribute("catalog",catalog);
         }
         else {
             req.setAttribute("catalog", catalog);

@@ -4,6 +4,8 @@ grant all privileges on *.* to 'user'@'localhost';
 flush privileges;
 */
 
+drop table OrderDetails;
+drop table Orders;
 drop table Items;
 drop table Users;
 
@@ -30,6 +32,34 @@ create table Items (
    itemCost numeric(5,2) not null,
    itemImage varchar(40) not null, 
    primary key (itemID)
+);
+
+create table Orders (
+   orderNum int not null auto_increment,
+   userID int,
+   fname varchar(20) not null,
+   lname varchar(20) not null,
+   addr varchar(100) not null,
+   city varchar(45) not null,
+   state char(2) not null,
+   zip int not null,
+   total numeric(8,2) not null,
+   creditCard varchar(12) not null,
+   orderDate date not null,
+   shippingDate date,
+   primary key (orderNum),
+   foreign key (userID) references Users (id)
+);
+
+create table OrderDetails (
+   orderNum int not null,
+   itemID int not null,
+   size char(1) not null,
+   quantity int not null,
+   price numeric(8,2) not null,
+   primary key (orderNum, itemID),
+   foreign key (orderNum) references Orders (orderNum),
+   foreign key (itemID) references Items (itemID)
 );
 
 insert into Users(username,email,password,fname,lname,addr,city,state,zip,type) values('admin','admin@jcc.com','password','Fred','Flintstone','123 East St.','Bedrock','TX',12345,0);

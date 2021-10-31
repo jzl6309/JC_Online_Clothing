@@ -40,9 +40,6 @@
             vertical-align: center;
             padding-top: 22px;
         }
-        #loginForm{
-            position: center;
-        }
         #AccountLogin {
             padding: 20px 20px;
         }
@@ -52,11 +49,14 @@
         #bottom {
             padding-top: 50px;
         }
-        #item {
-            float: left;
-        }
         td {
             padding: 15px;
+        }
+        .buttons {
+            background: black;
+            color: white;
+            height: 25px;
+            width: 85px;
         }
     </style>
 <head>
@@ -84,7 +84,7 @@
     ArrayList<ShoppingCartItem> shoppingCart = cart.getShoppingCart();
     DecimalFormat df = new DecimalFormat("$#,##0.00");
 %>
-<h1>Under Construction</h1>
+<h1>Shopping Cart</h1>
     <table>
         <tr>
             <th>Item</th>
@@ -96,8 +96,12 @@
             <th></th>
         </tr>
     <%
+        double totalPrice = 0;
+        int totalQuantity = 0;
         for (int i = 0; i < shoppingCart.size(); i++) {
             ShoppingCartItem item = shoppingCart.get(i);
+            totalPrice += item.getItem().getItemPrice()*item.getQuantity();
+            totalQuantity += item.getQuantity();
     %>
         <tr>
             <td><img src="resources_web/<%=item.getItem().getImageFilename()%>"></td>
@@ -109,20 +113,28 @@
                 <input name="quantity" type="number" size="3" value="<%=item.getQuantity()%>">
                 <input type="hidden" name="updateItem" value="<%=item.getItem().getItemID()%>">
             </td>
-            <td><input type="submit" value="Update">
+            <td><input class="buttons" type="submit" value="Update">
             </td></form>
              <form name="remove" action="ShoppingCart" method="post">
-            <td><input type="submit" value="Remove"></td>
+            <td><input class="buttons" type="submit" value="Remove"></td>
             <input type="hidden" name="removeItem" value="<%=item.getItem().getItemID()%>">
             </form>
         </tr>
     <%
         }
     %>
+        <tr>
+            <td><b>Totals:</b></td>
+            <td></td>
+            <td></td>
+            <td><b><%=df.format(totalPrice)%></b></td>
+            <td><b><%=totalQuantity%></b></td>
+            <td></td>
+            <td><form name="checkout" action="Checkout.jsp" method="post">
+                <input class="buttons" type="submit" value="Checkout">
+            </form></td>
+        </tr>
     </table>
-    <form name="checkout" action="Checkout.jsp" method="post">
-        <input type="submit" value="Checkout">
-    </form>
 <div style="text-align: center"><img id="bottom" src="resources_web/bottom.jpg"/></div>
 </body>
 </html>
