@@ -1,4 +1,6 @@
-<%--
+<%@ page import="com.example.jcclothing.AuthenticateService" %>
+<%@ page import="com.example.jcclothing.OrderHistory" %>
+<%@ page import="java.text.DecimalFormat" %><%--
   Created by IntelliJ IDEA.
   User: nughufer
   Date: 10/27/21
@@ -43,20 +45,23 @@
             padding: 20px 5px;
         }
         .footer {
-            position: absolute;
+            padding-top: 50px;
             width: 100%;
             bottom: 0;
+        }
+        td {
+            padding-right: 50px;
+            padding-left: 50px;
         }
     </style>
 <head>
     <title>JC Clothing - Tracking</title>
 </head>
 <body>
-    <h1>Under Construction</h1>
     <ul class="group1">
         <li id="item1"><a href="index.jsp"><img id="logo" src="resources_web/logo.png"/></a></li>
         <li><a href="Catalog">CATALOG</a></li>
-        <li><a href="TrackOrder.jsp">TRACK ORDER</a></li>
+        <li><a href="TrackOrder">TRACK ORDER</a></li>
         <li><a href="Contact.jsp">CONTACT US</a></li>
         <li><form id="searchBox" action="search.jsp" method="post">
             <input type="text" name="searchBox">
@@ -69,6 +74,47 @@
             <input type="image" src="resources_web/shoppingCart.png" height="21px" width="21px">
         </form></li>
     </ul>
+    <h1>Tracking</h1>
+    <%
+        if (!AuthenticateService.loggedIn) {
+    %>
+            <h2>Please login to view your order status</h2>
+    <%
+        } else {
+    %>
+        <h2><%=AuthenticateService.user.getFname()%>'s Orders</h2>
+        <table>
+            <tr>
+                <th>Order Date</th>
+                <th>Order Number</th>
+                <th>Total Price</th>
+                <th>Order Status</th>
+                <th>Shipping Date</th>
+            </tr>
+    <%
+            OrderHistory orderHistory = (OrderHistory) request.getAttribute("orderHistory");
+            DecimalFormat df = new DecimalFormat("$#,###.00");
+            for (int i = 0; i < orderHistory.size(); i++) {
+    %>
+            <tr>
+                <td><%=orderHistory.get(i).getOrderDate()%></td>
+                <td><%=orderHistory.get(i).getOrderNum()%></td>
+                <td><%=df.format(orderHistory.get(i).getTotalPrice())%></td>
+                <td><%=orderHistory.get(i).getStatus()%></td>
+                <td><%if (orderHistory.get(i) != null) orderHistory.get(i).getShippingDate();%></td>
+            </tr>
+    <%
+            }
+    %>
+        </table>
+    <%
+        }
+    %>
+    <h3>Order Status:</h3>
+    <p>Paid - Your order has been paid and will br processed shortly.<br>
+    In Process - We currently preparing your order.<br>
+    Shipped - We have shipped your order. You should have it soon.</p>
+
 <div class="footer"><img id="bottom" src="resources_web/bottom.jpg"/></div>
 </body>
 </html>

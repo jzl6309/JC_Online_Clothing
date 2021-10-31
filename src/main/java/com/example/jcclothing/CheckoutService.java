@@ -1,8 +1,6 @@
 package com.example.jcclothing;
 
 import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 
 public class CheckoutService {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/JCClothing";
@@ -34,8 +32,8 @@ public class CheckoutService {
     }
 
     public void processOrder() {
-        String insertStmt = insertStmt = "INSERT INTO Orders (userID, fname, lname, addr, city, state, zip, total, creditCard) "
-                    + "values (?,?,?,?,?,?,?,?,?);";
+        String insertStmt = insertStmt = "INSERT INTO Orders (userID, fname, lname, addr, city, state, zip, total, creditCard, status) "
+                    + "values (?,?,?,?,?,?,?,?,?,?);";
 
         try {
             PreparedStatement stmt = conn.prepareStatement(insertStmt);
@@ -59,6 +57,7 @@ public class CheckoutService {
             stmt.setInt(7, order.getZip());
             stmt.setDouble(8, order.getTotalPrice());
             stmt.setString(9, Order.getInstance().getCreditCard());
+            stmt.setString(10, "Paid");
 
             stmt.execute();
         }
