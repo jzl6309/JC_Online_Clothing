@@ -1,12 +1,14 @@
 package com.example.jcclothing;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 public class CheckoutService {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/JCClothing";
     private static final String USER = "user";
     private static final String PW = "password";
+    private static final int GUEST = -1;
     private Connection conn;
 
     private Order order;
@@ -32,9 +34,7 @@ public class CheckoutService {
     }
 
     public void processOrder() {
-        String insertStmt = null;
-
-        insertStmt = "INSERT INTO Orders (userID, fname, lname, addr, city, state, zip, total, orderDate) "
+        String insertStmt = insertStmt = "INSERT INTO Orders (userID, fname, lname, addr, city, state, zip, total, creditCard) "
                     + "values (?,?,?,?,?,?,?,?,?);";
 
         try {
@@ -45,8 +45,10 @@ public class CheckoutService {
                 userID = AuthenticateService.user.getID();
             }
             else {
-                userID = -1;
+                userID = GUEST;
             }
+
+
 
             stmt.setInt(1,userID);
             stmt.setString(2, order.getFname());
@@ -56,12 +58,12 @@ public class CheckoutService {
             stmt.setString(6, order.getState());
             stmt.setInt(7, order.getZip());
             stmt.setDouble(8, order.getTotalPrice());
-            stmt.setDate(9, Date.valueOf(LocalDate.now()));
+            stmt.setString(9, Order.getInstance().getCreditCard());
 
             stmt.execute();
         }
         catch (SQLException e) {
-
+            System.out.println(e);
         }
     }
 
@@ -71,19 +73,31 @@ public class CheckoutService {
         try {
             stmt = conn.createStatement();
 
-            ResultSet resultSet = stmt.executeQuery("SELECT max(orderNum) FROM Orders");
+            ResultSet resultSet = stmt.executeQuery("SELECT max(orderNum) as max FROM Orders");
 
-
+            int orderNum = -1;
             while (resultSet.next()) {
-                int orderNum = resultSet.getInt("orderNum");
+                orderNum = resultSet.getInt("max");
             }
 
-            String insertStmt = "INSERT INTO OrderDetails (orderNum, itemID, size, quantity, price)"
-                    + "(?,?,?,?,?)";
+            for (int i = 0; i < cart.size(); i++) {
 
+                String insertStmt = "INSERT INTO OrderDetails (orderNum, itemID, size, quantity, price)"
+                        + " values (?,?,?,?,?)";
+
+                PreparedStatement preparedStatement = conn.prepareStatement(insertStmt);
+
+                preparedStatement.setInt(1, orderNum);
+                preparedStatement.setInt(2, cart.get(i).getItem().getItemID());
+                preparedStatement.setString(3, Character.toString(cart.get(i).getSize()));
+                preparedStatement.setInt(4, cart.get(i).getQuantity());
+                preparedStatement.setDouble(5, cart.get(i).getItem().getItemPrice());
+
+                preparedStatement.execute();
+            }
         }
         catch (SQLException e) {
-
+            System.out.println(e);
         }
 
     }

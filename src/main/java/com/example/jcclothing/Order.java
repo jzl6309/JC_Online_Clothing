@@ -2,6 +2,7 @@ package com.example.jcclothing;
 
 public class Order {
 
+    private static Order instance;
     private int userID;
     private String fname;
     private String lname;
@@ -13,7 +14,17 @@ public class Order {
     private String creditCard;
     private ShoppingCart cart;
 
-    public Order(String fname, String lname, String addr, String city, String state, int zip, String creditCard, double totalPrice) {
+    public Order() {}
+
+    public static synchronized Order getInstance() {
+
+        if (instance == null) {
+            instance = new Order();
+        }
+        return instance;
+    }
+
+    public void setOrder(String fname, String lname, String addr, String city, String state, int zip, String creditCard, double totalPrice) {
 
         if (AuthenticateService.user != null) userID = AuthenticateService.user.getID();
         this.fname = fname;
@@ -25,6 +36,10 @@ public class Order {
         this.creditCard = creditCard;
         this.totalPrice = totalPrice;
         cart = ShoppingCart.getInstance();
+    }
+
+    public static void empty(){
+        instance = null;
     }
 
     public int getUserID() { return userID; }
@@ -42,4 +57,6 @@ public class Order {
     public int getZip() { return zip; }
 
     public double getTotalPrice() { return totalPrice; }
+
+    public String getCreditCard() { return creditCard; }
 }

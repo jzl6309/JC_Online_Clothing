@@ -20,6 +20,10 @@ public class ShoppingCart {
         return instance;
     }
 
+    public static void empty() {
+        instance = null;
+    }
+
     public void add(ShoppingCartItem item) {
         shoppingCart.add(item);
     }

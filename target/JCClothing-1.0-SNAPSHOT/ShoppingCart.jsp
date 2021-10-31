@@ -124,8 +124,8 @@
         }
     %>
         <tr>
-            <td><b>Totals:</b></td>
             <td></td>
+            <td><b>Totals:</b></td>
             <td></td>
             <td><b><%=df.format(totalPrice)%></b></td>
             <td><b><%=totalQuantity%></b></td>

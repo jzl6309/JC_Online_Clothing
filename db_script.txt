@@ -45,7 +45,7 @@ create table Orders (
    zip int not null,
    total numeric(8,2) not null,
    creditCard varchar(12) not null,
-   orderDate date not null,
+   orderDate timestamp default CURRENT_TIMESTAMP,
    shippingDate date,
    primary key (orderNum),
    foreign key (userID) references Users (id)

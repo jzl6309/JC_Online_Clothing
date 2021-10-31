@@ -1,7 +1,8 @@
 <%@ page import="java.text.DecimalFormat" %>
 <%@ page import="com.example.jcclothing.ShoppingCart" %>
 <%@ page import="com.example.jcclothing.ShoppingCartItem" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.example.jcclothing.Order" %><%--
   Created by IntelliJ IDEA.
   User: nughufer
   Date: 10/30/21
@@ -91,19 +92,48 @@
         DecimalFormat df = new DecimalFormat("$#,##0.00");
     %>
     <h1>Confirmation</h1>
-    <div class="shippingInfo">
-        <p><b>Please Confirm Your Information</b></p>
-        <p>Name:<br>
-        <%=request.getParameter("fname")%><br>
-        <%=request.getParameter("lname")%></p><br>
-        <p>Shipping Address:<br>
-        <%=request.getParameter("addr")%><br>
-        <%=request.getParameter("city")%><br>
-        <%=request.getParameter("state")%><br>
-        <%=request.getParameter("zip")%></p><br>
-        <p>Credit Card Number:<br>
-        <%=request.getParameter("CC")%></p>
-    </div>
+    <%
+        if (request.getAttribute("confirm") != null ) {
+    %>
+            <p>Your order is complete! We will begin working on it immediately. You can track your order status in Track Order</p>
+            <div class="shippingInfo">
+                <p><b>Name:</b><br>
+                <%=request.getAttribute("fname")%><br>
+                <%=request.getAttribute("lname")%></p><br>
+                <p><b>Shipping Address:</b><br>
+                <%=request.getAttribute("addr")%><br>
+                <%=request.getAttribute("city")%><br>
+                <%=request.getAttribute("state")%><br>
+                <%=request.getAttribute("zip")%></p><br>
+                <p><b>Credit Card Number:</b><br>
+                <%=request.getAttribute("CC")%></p>
+            </div>
+    <%
+
+        }
+        if (request.getAttribute("confirm") == null ) {
+    %>
+            <div class="shippingInfo">
+                <p><b>Please Confirm Your Information</b></p>
+                <p>Name:<br>
+                <%=request.getParameter("fname")%><br>
+                <%=request.getParameter("lname")%></p><br>
+                <p>Shipping Address:<br>
+                <%=request.getParameter("addr")%><br>
+                <%=request.getParameter("city")%><br>
+                <%=request.getParameter("state")%><br>
+                <%=request.getParameter("zip")%></p><br>
+                <p>Credit Card Number:<br>
+                <%=request.getParameter("CC")%></p>
+            </div>
+    <%
+        } else {
+    %>
+
+    <%
+        }
+    %>
+
     <table>
         <tr>
             <th>Item</th>
@@ -131,17 +161,34 @@
             }
         %>
         <tr>
+            <td></td>
             <td><b>Totals:</b></td>
             <td></td>
+            <td><b><%=totalQuantity%></b></td>
+            <td><b><%=df.format(totalPrice)%></b></td>
             <td></td>
-            <td><%=totalQuantity%></td>
-            <td><%=df.format(totalPrice)%></td>
-            <td></td>
-            <td><form name="checkout" action="Checkout" method="post">
-                <input class="buttons" type="submit" value="Submit Order">
-            </form></td>
+        <%
+            if (request.getAttribute("confirm") == null ) {
+        %>
+                <td><form name="checkout" action="Checkout" method="post">
+                    <input class="buttons" type="submit" value="Submit Order">
+                </form></td>
+        <%
+            }
+        %>
         </tr>
     </table>
-
+    <%
+        if (request.getAttribute("confirm") == null) {
+            Order order = Order.getInstance();
+            order.setOrder(request.getParameter("fname"), request.getParameter("lname"), request.getParameter("addr"),
+                    request.getParameter("city"), request.getParameter("state"), Integer.parseInt(request.getParameter("zip")),
+                    request.getParameter("CC"), totalPrice);
+        }
+        if (request.getAttribute("confirm") != null) {
+            ShoppingCart.empty();
+            Order.empty();
+        }
+    %>
 </body>
 </html>
