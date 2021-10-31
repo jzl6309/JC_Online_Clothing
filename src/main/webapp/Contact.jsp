@@ -36,14 +36,22 @@
             vertical-align: center;
             padding-top: 22px;
         }
-        #loginForm{
-            position: center;
-        }
         #AccountLogin {
             padding: 20px 20px;
         }
         #ShoppingCartIcon {
             padding: 20px 5px;
+        }
+        .icons {
+            height: 25px;
+            width: 25px;
+        }
+        table {
+            padding-top: 25px;
+            padding-left: 50px;
+        }
+        td {
+            padding: 10px;
         }
     </style>
 <head>
@@ -68,7 +76,23 @@
         <input type="image" src="resources_web/shoppingCart.png" height="21px" width="21px">
     </form></li>
 </ul>
-    <h1>Under Construction</h1>
-
+    <h1>Contact Us</h1>
+    <table>
+        <b>We're here to help!</b>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr></tr>
+        <tr>
+            <td><img class="icons" src="resources_web/phone.png"></td>
+            <td>1-(855)-1WE-HELP</td>
+        </tr>
+        <tr></tr>
+        <tr>
+            <td><img class="icons" src="resources_web/email.jpeg"></td>
+            <td>support@jcclothing.com</td>
+        </tr>
+    </table>
 </body>
 </html>

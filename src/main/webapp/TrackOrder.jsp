@@ -107,13 +107,14 @@
             }
     %>
         </table>
+        <h3>Order Status:</h3>
+        <p>Paid - Your order has been paid and will br processed shortly.<br>
+            In Process - We currently preparing your order.<br>
+            Shipped - We have shipped your order. You should have it soon.</p>
     <%
         }
     %>
-    <h3>Order Status:</h3>
-    <p>Paid - Your order has been paid and will br processed shortly.<br>
-    In Process - We currently preparing your order.<br>
-    Shipped - We have shipped your order. You should have it soon.</p>
+
 
 <div class="footer"><img id="bottom" src="resources_web/bottom.jpg"/></div>
 </body>
