@@ -45,7 +45,7 @@
         }
         .options {
             position: fixed;
-            right: 50%;
+            left: 400px;
             top: 150px;
         }
         .buttons {
@@ -53,6 +53,9 @@
             color: white;
             height: 75px;
             width: 150px;
+        }
+        td {
+            padding-right: 30px;
         }
     </style>
 <head>
@@ -76,7 +79,7 @@
     </form></li>
 </ul>
 
-<h1>Under Construction!</h1>
+<h1>Account Information</h1>
 <p>Hello <%=AuthenticateService.user.getFname()%>!</p>
 <p>Account Info:<br>
     <%=AuthenticateService.user.getUser()%><br>
@@ -88,28 +91,77 @@
     <%=AuthenticateService.user.getZip()%>
 </p>
 <div class="options">
-    <form action="AccountServlet" method="post">
-        <input type="hidden" name="options" value="logout">
-        <input class="buttons" type="submit" value="Logout">
-    </form>
-    <form action="AccountServlet" method="post">
-        <input type="hidden" name="options" value="updateAddress">
-        <input class="buttons" type="submit" value="Update Info">
-    </form>
-    <%
-        if(AuthenticateService.user.getType() == User.ADMIN || AuthenticateService.user.getType() == User.STAFF) {
-    %>
-            <form action="ResetUserPassword.jsp" method="post">
-                <input type="hidden" name="options" value="ResetPassword">
-                <input class="buttons" type="submit" value="Reset Password">
-            </form>
-            <form action="AccountServlet" method="post">
-                <input type="hidden" name="options" value="updateCatalog">
-                <input class="buttons" type="submit" value="Update Catalog">
-            </form>
-    <%
-        }
-    %>
+    <table>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <td><form action="AccountServlet" method="post">
+                <input type="hidden" name="options" value="logout">
+                <input class="buttons" type="submit" value="Logout">
+            </form></td>
+        <%
+            if(AuthenticateService.user.getType() == User.ADMIN || AuthenticateService.user.getType() == User.STAFF) {
+        %>
+                 <td><form action="AccountServlet" method="post">
+                     <input type="hidden" name="options" value="catalog">
+                     <input class="buttons" type="submit" value="Catalog">
+                 </form></td>
+        <%
+            }
+            if (AuthenticateService.user.getType() == User.ADMIN) {
+        %>
+                <td><form action="AccountServlet" method="post">
+                    <input type="hidden" name="options" value="reports">
+                    <input class="buttons" type="submit" value="Reports">
+                </form></td>
+        <%
+            }
+        %>
+        </tr>
+        <tr>
+            <td><form action="AccountServlet" method="post">
+                <input type="hidden" name="options" value="updateAddress">
+                <input class="buttons" type="submit" value="Update Info">
+            </form></td>
+        <%
+            if(AuthenticateService.user.getType() == User.ADMIN || AuthenticateService.user.getType() == User.STAFF) {
+        %>
+                <td><form action="AccountServlet" method="post">
+                    <input type="hidden" name="options" value="users">
+                    <input class="buttons" type="submit" value="Users">
+                </form></td>
+        <%
+            }
+            if (AuthenticateService.user.getType() == User.ADMIN) {
+        %>
+                <td><form action="AccountServlet" method="post">
+                    <input type="hidden" name="options" value="staff">
+                    <input class="buttons" type="submit" value="Staff">
+                </form></td>
+        <%
+            }
+        %>
+        </tr>
+        <%
+            if(AuthenticateService.user.getType() == User.ADMIN || AuthenticateService.user.getType() == User.STAFF) {
+        %>
+                <tr>
+                    <td><form action="ResetUserPassword.jsp" method="post">
+                        <input type="hidden" name="options" value="ResetPassword">
+                        <input class="buttons" type="submit" value="Reset Password">
+                    </form></td>
+                    <td><form action="AccountServlet" method="post">
+                        <input type="hidden" name="options" value="orders">
+                        <input class="buttons" type="submit" value="Orders">
+                    </form></td>
+                </tr>
+        <%
+            }
+        %>
+    </table>
 </div>
 </body>
 </html>

@@ -28,11 +28,12 @@ public class ResetPasswordService {
         boolean valid = false;
         try {
             Statement stmt = conn.createStatement();
-            ResultSet result = stmt.executeQuery("SELECT username FROM Users");
+            ResultSet result = stmt.executeQuery("SELECT username,type FROM Users");
 
             while (result.next()) {
                 String name = result.getString("username");
-                if (name.equals(username)) valid = true;
+                int type = result.getInt("type");
+                if (AuthenticateService.user.getType() <= type && name.equals(username)) valid = true;
             }
         }
         catch (SQLException e) {

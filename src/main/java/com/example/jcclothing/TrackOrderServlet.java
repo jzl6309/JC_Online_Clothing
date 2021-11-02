@@ -30,11 +30,13 @@ public class TrackOrderServlet extends HttpServlet {
         if (req.getParameter("cancel") != null) {
             trackOrderService.cancel(Integer.parseInt(req.getParameter("cancel")));
         }
+        if (AuthenticateService.loggedIn) {
+            orderHistory = trackOrderService.getOrderHistory();
 
-        orderHistory = trackOrderService.getOrderHistory();
+            req.setAttribute("orderHistory", orderHistory);
+        }
         trackOrderService.closeConn();
 
-        req.setAttribute("orderHistory", orderHistory);
         RequestDispatcher view = req.getRequestDispatcher("TrackOrder.jsp");
         view.forward(req, resp);
     }

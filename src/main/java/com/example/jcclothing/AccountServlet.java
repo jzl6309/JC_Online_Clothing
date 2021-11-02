@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 @WebServlet(
         name = "AccountServlet",
@@ -27,7 +29,20 @@ public class AccountServlet extends HttpServlet {
             RequestDispatcher view = req.getRequestDispatcher("EditAccount.jsp");
             view.forward(req, resp);
         }
+        else if (option.equals("catalog")) {
+            CatalogService catalogService = CatalogService.getInstance();
 
+            try {
+                ArrayList<Item> catalog = catalogService.getCatalog();
+
+                req.setAttribute("catalog", catalog);
+                RequestDispatcher view = req.getRequestDispatcher("EditCatalog.jsp");
+                view.forward(req, resp);
+            }
+            catch (SQLException e) {
+
+            }
+        }
 
         RequestDispatcher view = req.getRequestDispatcher("index.jsp");
         view.forward(req, resp);

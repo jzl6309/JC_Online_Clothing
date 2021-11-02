@@ -59,6 +59,12 @@
             height: 25px;
             width: 85px;
         }
+        .orderNum {
+            background: white;
+            color: blue;
+            text-decoration: underline;
+            border-width: 0;
+        }
     </style>
 <head>
     <title>JC Clothing - Tracking</title>
@@ -105,7 +111,10 @@
     %>
             <tr>
                 <td><%=orderHistory.get(i).getOrderDate()%></td>
-                <td><%=orderHistory.get(i).getOrderNum()%></td>
+                <td><form action="OrderDetails" method="post">
+                    <input type="hidden" name="order" value="<%=orderHistory.get(i).getOrderNum()%>">
+                    <input class="orderNum" type="submit" value="<%=orderHistory.get(i).getOrderNum()%>">
+                </form></td>
                 <td><%=df.format(orderHistory.get(i).getTotalPrice())%></td>
                 <td><%=orderHistory.get(i).getStatus()%></td>
                 <td><%if (orderHistory.get(i) != null) orderHistory.get(i).getShippingDate();%></td>

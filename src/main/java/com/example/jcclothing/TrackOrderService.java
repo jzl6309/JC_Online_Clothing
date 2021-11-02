@@ -27,8 +27,15 @@ public class TrackOrderService {
 
         OrderHistory orderHistory = null;
         try {
-            Statement stmt = conn.createStatement();
-            ResultSet result = stmt.executeQuery("select * from Orders;");
+            int id = AuthenticateService.user.getID();
+
+            String query = "SELECT * FROM Orders WHERE userID = ?;";
+
+            PreparedStatement stmt = conn.prepareStatement(query);
+
+            stmt.setInt(1, id);
+
+            ResultSet result = stmt.executeQuery();
 
             orderHistory = new OrderHistory();
 
