@@ -54,7 +54,7 @@ public class CheckoutService {
             stmt.setString(4, order.getAddr());
             stmt.setString(5, order.getCity());
             stmt.setString(6, order.getState());
-            stmt.setInt(7, order.getZip());
+            stmt.setString(7, order.getZip());
             stmt.setDouble(8, order.getTotalPrice());
             stmt.setString(9, Order.getInstance().getCreditCard());
             stmt.setString(10, "Paid");

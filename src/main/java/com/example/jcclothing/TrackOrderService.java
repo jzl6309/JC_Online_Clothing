@@ -46,6 +46,22 @@ public class TrackOrderService {
         return orderHistory;
     }
 
+    public void cancel(int i) {
+        String updateStmt = "UPDATE Orders SET status = ? WHERE orderNum = ?;";
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(updateStmt);
+
+            stmt.setString(1, "Cancelled");
+            stmt.setInt(2, i);
+
+            stmt.execute();
+        }
+        catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
     public void closeConn() {
         try {
             conn.close();

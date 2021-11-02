@@ -15,14 +15,14 @@ public class SignUpService {
     private String addr;
     private String city;
     private String state;
-    private int zip;
+    private String zip;
     private int type;
     private Connection conn = null;
     private boolean validSignUp =true;
     private boolean validEmail = true;
 
     public SignUpService(String username, String email, String password, String fname, String lname, String addr,
-                         String city, String state, int zip, int type) throws SQLException {
+                         String city, String state, String zip, int type) throws SQLException {
 
         this.username = username;
         this.email = email;
@@ -95,7 +95,7 @@ public class SignUpService {
             stmt.setString(6, addr);
             stmt.setString(7, city);
             stmt.setString(8, state);
-            stmt.setInt(9, zip);
+            stmt.setString(9, zip);
             stmt.setInt(10, type);
 
             stmt.execute();

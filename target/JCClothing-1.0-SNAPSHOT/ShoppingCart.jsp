@@ -90,8 +90,8 @@
             <th>Item</th>
             <th>Desc</th>
             <th>Size</th>
-            <th>Price</th>
             <th>Quantity</th>
+            <th>Price</th>
             <th></th>
             <th></th>
         </tr>
@@ -107,12 +107,12 @@
             <td><img src="resources_web/<%=item.getItem().getImageFilename()%>"></td>
             <td><%=item.getItem().getItemName()%></td>
             <td><%=item.getSize()%></td>
-            <td><%=df.format(item.getItem().getItemPrice()*item.getQuantity())%></td>
             <form action="ShoppingCart" method="post">
             <td>
                 <input name="quantity" type="number" size="3" value="<%=item.getQuantity()%>">
                 <input type="hidden" name="updateItem" value="<%=item.getItem().getItemID()%>">
             </td>
+            <td><%=df.format(item.getItem().getItemPrice()*item.getQuantity())%></td>
             <td><input class="buttons" type="submit" value="Update">
             </td></form>
              <form name="remove" action="ShoppingCart" method="post">
@@ -127,12 +127,18 @@
             <td></td>
             <td><b>Totals:</b></td>
             <td></td>
-            <td><b><%=df.format(totalPrice)%></b></td>
             <td><b><%=totalQuantity%></b></td>
+            <td><b><%=df.format(totalPrice)%></b></td>
             <td></td>
+    <%
+        if (totalQuantity > 0) {
+    %>
             <td><form name="checkout" action="Checkout.jsp" method="post">
                 <input class="buttons" type="submit" value="Checkout">
             </form></td>
+    <%
+        }
+    %>
         </tr>
     </table>
 <div style="text-align: center"><img id="bottom" src="resources_web/bottom.jpg"/></div>

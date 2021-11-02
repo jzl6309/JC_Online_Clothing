@@ -9,7 +9,7 @@ public class Order {
     private String addr;
     private String city;
     private String state;
-    private int zip;
+    private String zip;
     private double totalPrice;
     private String creditCard;
     private ShoppingCart cart;
@@ -24,7 +24,7 @@ public class Order {
         return instance;
     }
 
-    public void setOrder(String fname, String lname, String addr, String city, String state, int zip, String creditCard, double totalPrice) {
+    public void setOrder(String fname, String lname, String addr, String city, String state, String zip, String creditCard, double totalPrice) {
 
         if (AuthenticateService.user != null) userID = AuthenticateService.user.getID();
         this.fname = fname;
@@ -54,7 +54,7 @@ public class Order {
 
     public String getState() { return state; }
 
-    public int getZip() { return zip; }
+    public String getZip() { return zip; }
 
     public double getTotalPrice() { return totalPrice; }
 

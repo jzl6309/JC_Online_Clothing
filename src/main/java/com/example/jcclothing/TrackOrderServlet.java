@@ -26,6 +26,11 @@ public class TrackOrderServlet extends HttpServlet {
         OrderHistory orderHistory = new OrderHistory();
 
         trackOrderService.openConn();
+
+        if (req.getParameter("cancel") != null) {
+            trackOrderService.cancel(Integer.parseInt(req.getParameter("cancel")));
+        }
+
         orderHistory = trackOrderService.getOrderHistory();
         trackOrderService.closeConn();
 

@@ -19,7 +19,7 @@ create table Users (
    addr varchar(100) not null,
    city varchar(45) not null,
    state char(2) not null,
-   zip int not null,
+   zip varchar(10) not null,
    type int not null,
    primary key (id)
 );
@@ -42,7 +42,7 @@ create table Orders (
    addr varchar(100) not null,
    city varchar(45) not null,
    state char(2) not null,
-   zip int not null,
+   zip varchar(10) not null,
    total numeric(8,2) not null,
    creditCard varchar(12) not null,
    status varchar(10) not null,
@@ -63,9 +63,9 @@ create table OrderDetails (
    foreign key (itemID) references Items (itemID)
 );
 
-insert into Users(username,email,password,fname,lname,addr,city,state,zip,type) values('admin','admin@jcc.com','password','Fred','Flintstone','123 East St.','Bedrock','TX',12345,0);
-insert into Users(username,email,password,fname,lname,addr,city,state,zip,type) values('staff','staff@jcc.com','password','Cindy','Luwho','321 Who St.','Whosville','NH',99944,1);
-insert into Users(username,email,password,fname,lname,addr,city,state,zip,type) values('johndoe','johndoe@jcc.com','password','John','Doe','537 Joes St.','Joestown','PA',34765,3);
+insert into Users(username,email,password,fname,lname,addr,city,state,zip,type) values('admin','admin@jcc.com','password','Fred','Flintstone','123 East St.','Bedrock','TX','12345',0);
+insert into Users(username,email,password,fname,lname,addr,city,state,zip,type) values('staff','staff@jcc.com','password','Cindy','Luwho','321 Who St.','Whosville','NH','99944',1);
+insert into Users(username,email,password,fname,lname,addr,city,state,zip,type) values('johndoe','johndoe@jcc.com','password','John','Doe','537 Joes St.','Joestown','PA','34765',3);
 
 insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Jeans','M','Blue',45.00,'jeansBlueM.jpeg');
 insert into Items(itemName,itemSex,itemColor,itemCost,itemImage) values('Jeans','M','Grey',45.00,'jeansGreyM.jpeg');

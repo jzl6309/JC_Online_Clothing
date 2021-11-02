@@ -23,6 +23,11 @@ public class AccountServlet extends HttpServlet {
         if (option.equals("logout")) {
             AuthenticateService.logout();
         }
+        else if (option.equals("updateAddress")) {
+            RequestDispatcher view = req.getRequestDispatcher("EditAccount.jsp");
+            view.forward(req, resp);
+        }
+
 
         RequestDispatcher view = req.getRequestDispatcher("index.jsp");
         view.forward(req, resp);

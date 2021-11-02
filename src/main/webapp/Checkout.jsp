@@ -84,18 +84,21 @@
         <p>Shipping and Payment Info</p>
         <form action="Confirmation.jsp" method="post">
             Name:<br>
-            <input name="fname" type="text" value="<%=user.getFname()%>"><br>
-            <input name="lname" type="text" value="<%=user.getLname()%>"><br>
+            <input name="fname" type="text" value="<%=user.getFname()%>" required><br>
+            <input name="lname" type="text" value="<%=user.getLname()%>" required><br>
             Street Address:<br>
-            <input name="addr" type="text" value="<%=user.getAddr()%>"><br>
+            <input name="addr" type="text" value="<%=user.getAddr()%>" required><br>
             City:<br>
-            <input name="city" type="text" value="<%=user.getCity()%>"><br>
+            <input name="city" type="text" value="<%=user.getCity()%>" required><br>
             State:<br>
-            <input name="state" type="text" value="<%=user.getState()%>"><br>
+            <input name="state" type="text" value="<%=user.getState()%>" required pattern="[A-Z]{1}[A-Za-z]{1}"
+                   oninvalid="this.setCustomValidity('Please enter a valid state.')" oninput="this.setCustomValidity('')"><br>
             Zip:<br>
-            <input name="zip" type="text" value="<%=user.getZip()%>"><br>
+            <input name="zip" type="text" value="<%=user.getZip()%>" required pattern="\d{5}-?(\d{4})?"
+                   oninvalid="this.setCustomValidity('Please enter a valid zip code.')" oninput="this.setCustomValidity('')"><br>
             Credit Card:<br>
-            <input name="CC" type="text" placeholder="Enter Credit Card"><br>
+            <input name="CC" type="text" placeholder="Enter Credit Card" required pattern="\d{9-12}"
+                   oninvalid="this.setCustomValidity('Please enter a credit card number.')" oninput="this.setCustomValidity('')"><br>
             <input class="button" type="submit" value="Submit">
         </form>
     <%
@@ -105,18 +108,21 @@
         <p>Enter Shipping and Payment Info</p>
         <form action="Confirmation.jsp" method="post">
             Name:<br>
-            <input name="fname" type="text" placeholder="First Name"><br>
-            <input name="lname" type="text" placeholder="Last Name"><br>
+            <input name="fname" type="text" placeholder="First Name" required><br>
+            <input name="lname" type="text" placeholder="Last Name" required><br>
             Street Address:<br>
-            <input name="addr" type="text" placeholder="Street Address"><br>
+            <input name="addr" type="text" placeholder="Street Address" required><br>
             City:<br>
-            <input name="city" type="text" placeholder="City"><br>
+            <input name="city" type="text" placeholder="City" required><br>
             State:<br>
-            <input name="state" type="text" placeholder="State"><br>
+            <input name="state" type="text" placeholder="State" required pattern="[A-Z]{1}[A-Za-z]{1}"
+                   oninvalid="this.setCustomValidity('Please enter a valid state.')" oninput="this.setCustomValidity('')"><br>
             Zip:<br>
-            <input name="zip" type="text" placeholder="Zip"><br>
+            <input name="zip" type="text" placeholder="Zip" required pattern="\d{5}-?(\d{4})?"
+                   oninvalid="this.setCustomValidity('Please enter a valid zip code.')" oninput="this.setCustomValidity('')"><br>
             Credit Card:<br>
-            <input name="CC" type="text" placeholder="Enter Credit Card"><br>
+            <input name="CC" type="text" placeholder="Enter Credit Card" required pattern="\d{9-12}"
+                   oninvalid="this.setCustomValidity('Please enter a valid credit card number.')" oninput="this.setCustomValidity('')"><br>
             <input class="button" type="submit" value="Submit">
         </form>
     <%

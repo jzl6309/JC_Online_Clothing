@@ -182,7 +182,7 @@
         if (request.getAttribute("confirm") == null) {
             Order order = Order.getInstance();
             order.setOrder(request.getParameter("fname"), request.getParameter("lname"), request.getParameter("addr"),
-                    request.getParameter("city"), request.getParameter("state"), Integer.parseInt(request.getParameter("zip")),
+                    request.getParameter("city"), request.getParameter("state"), request.getParameter("zip"),
                     request.getParameter("CC"), totalPrice);
         }
         if (request.getAttribute("confirm") != null) {

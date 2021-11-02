@@ -53,6 +53,12 @@
             padding-right: 50px;
             padding-left: 50px;
         }
+        .buttons {
+            background: black;
+            color: white;
+            height: 25px;
+            width: 85px;
+        }
     </style>
 <head>
     <title>JC Clothing - Tracking</title>
@@ -90,6 +96,7 @@
                 <th>Total Price</th>
                 <th>Order Status</th>
                 <th>Shipping Date</th>
+                <th></th>
             </tr>
     <%
             OrderHistory orderHistory = (OrderHistory) request.getAttribute("orderHistory");
@@ -102,15 +109,26 @@
                 <td><%=df.format(orderHistory.get(i).getTotalPrice())%></td>
                 <td><%=orderHistory.get(i).getStatus()%></td>
                 <td><%if (orderHistory.get(i) != null) orderHistory.get(i).getShippingDate();%></td>
+    <%
+                if (!orderHistory.get(i).getStatus().equals("Cancelled")) {
+    %>
+                    <form name="remove" action="TrackOrder">
+                        <td><input class="buttons" type="submit" value="Cancel"></td>
+                        <input type="hidden" name="cancel" value="<%=orderHistory.get(i).getOrderNum()%>">
+                    </form>
+    <%
+                }
+    %>
             </tr>
     <%
             }
     %>
         </table>
         <h3>Order Status:</h3>
-        <p>Paid - Your order has been paid and will br processed shortly.<br>
-            In Process - We currently preparing your order.<br>
-            Shipped - We have shipped your order. You should have it soon.</p>
+        <p>Paid - Your order has been paid and will be processed shortly.<br>
+            In Process - We are currently preparing your order.<br>
+            Shipped - We have shipped your order. You should have it soon.<br>
+            Cancelled - Your order has been cancelled and a refund issued.</p>
     <%
         }
     %>

@@ -28,7 +28,7 @@ public class SignUpServlet extends HttpServlet {
         String addr = req.getParameter("addr");
         String city = req.getParameter("city");
         String state = req.getParameter("state");
-        int zip = Integer.parseInt(req.getParameter("zip"));
+        String zip = req.getParameter("zip");
         int type = User.USER;
         boolean validUsername = false;
         boolean validPassword = false;

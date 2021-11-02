@@ -40,7 +40,7 @@ public class AuthenticateService {
 
                 user = new User(result.getInt("id"),username, result.getString("email"),
                        result.getString("fname"), result.getString("lname"), result.getString("addr"),
-                       result.getString("city"), result.getString("state"), result.getInt("zip"), result.getInt("type"));
+                       result.getString("city"), result.getString("state"), result.getString("zip"), result.getInt("type"));
                 loggedIn = true;
                 return true;
             }

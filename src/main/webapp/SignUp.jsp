@@ -95,25 +95,27 @@
 <div class="signup">
     <form action="SignUp" method="post">
         Name:<br>
-        <input name="fname" type="text" placeholder="First Name"><br>
-        <input name="lname" type="text" placeholder="Last Name"><br>
+        <input name="fname" type="text" placeholder="First Name" required><br>
+        <input name="lname" type="text" placeholder="Last Name" required><br>
         Street Address:<br>
-        <input name="addr" type="text" placeholder="Street Address"><br>
+        <input name="addr" type="text" placeholder="Street Address" required><br>
         City:<br>
-        <input name="city" type="text" placeholder="City"><br>
+        <input name="city" type="text" placeholder="City" required><br>
         State:<br>
-        <input name="state" type="text" placeholder="State"><br>
+        <input name="state" type="text" placeholder="State" required pattern="[A-Z]{1}[A-Za-z]{1}"
+               oninvalid="this.setCustomValidity('Please enter a valid state.')" oninput="this.setCustomValidity('')"><br>
         Zip:<br>
-        <input name="zip" type="text" placeholder="Zip"><br>
+        <input name="zip" type="text" placeholder="Zip" required pattern="\d{5}-?(\d{4})?"
+               oninvalid="this.setCustomValidity('Please enter a valid zip code.')" oninput="this.setCustomValidity('')"><br>
         <div class="rightSignup">
             Username:<br>
-            <input name="username" type="text" placeholder="Username"><br>
+            <input name="username" type="text" placeholder="Username" required><br>
             Email:<br>
-            <input name="email" type="email" placeholder="Email"><br>
+            <input name="email" type="email" placeholder="Email" required><br>
             Password:<br>
-            <input name="password" type="password" placeholder="Password"><br>
+            <input name="password" type="password" placeholder="Password" required><br>
             Confirm:<br>
-            <input name="confirm" type="password" placeholder="Password"><br>
+            <input name="confirm" type="password" placeholder="Password" required><br>
             <input class="button" type="submit" value="Submit"><br>
         </div>
     </form>

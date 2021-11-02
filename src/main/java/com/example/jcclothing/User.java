@@ -13,10 +13,10 @@ public class User {
     private String addr;
     private String city;
     private String state;
-    private int zip;
+    private String zip;
     private int type;
 
-    public User(int id, String user, String email, String fname, String lname, String addr, String city, String state, int zip, int type ){
+    public User(int id, String user, String email, String fname, String lname, String addr, String city, String state, String zip, int type ){
         ID = id;
         this.user = user;
         this.email = email;
@@ -51,7 +51,27 @@ public class User {
 
     public String getState() { return state; }
 
-    public int getZip() { return zip; }
+    public String getZip() { return zip; }
 
     public int getType() { return type; }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAddr(String addr) {
+        this.addr = addr;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
 }

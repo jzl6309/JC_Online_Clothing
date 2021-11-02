@@ -1,4 +1,5 @@
-<%@ page import="com.example.jcclothing.AuthenticateService" %><%--
+<%@ page import="com.example.jcclothing.AuthenticateService" %>
+<%@ page import="com.example.jcclothing.User" %><%--
   Created by IntelliJ IDEA.
   User: nughufer
   Date: 10/20/21
@@ -95,6 +96,20 @@
         <input type="hidden" name="options" value="updateAddress">
         <input class="buttons" type="submit" value="Update Info">
     </form>
+    <%
+        if(AuthenticateService.user.getType() == User.ADMIN || AuthenticateService.user.getType() == User.STAFF) {
+    %>
+            <form action="ResetUserPassword.jsp" method="post">
+                <input type="hidden" name="options" value="ResetPassword">
+                <input class="buttons" type="submit" value="Reset Password">
+            </form>
+            <form action="AccountServlet" method="post">
+                <input type="hidden" name="options" value="updateCatalog">
+                <input class="buttons" type="submit" value="Update Catalog">
+            </form>
+    <%
+        }
+    %>
 </div>
 </body>
 </html>
