@@ -60,6 +60,10 @@ public class CatalogService {
         return null;
     }
 
+    public void clearFilteredList() {
+        filteredList = null;
+    }
+
     public void setFilteredList(ArrayList<Item> list) { filteredList = list; }
 
     public ArrayList<Item> getFilteredList() {

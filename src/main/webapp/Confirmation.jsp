@@ -116,7 +116,7 @@
             <div class="shippingInfo">
                 <p><b>Please Confirm Your Information</b></p>
                 <p>Name:<br>
-                <%=request.getParameter("fname")%><br>
+                <%=request.getParameter("fname")%>
                 <%=request.getParameter("lname")%></p><br>
                 <p>Shipping Address:<br>
                 <%=request.getParameter("addr")%><br>

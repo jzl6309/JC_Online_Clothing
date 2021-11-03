@@ -53,6 +53,33 @@ public class TrackOrderService {
         return orderHistory;
     }
 
+    public OrderHistory getAllOrderHistory() {
+
+        OrderHistory orderHistory = null;
+
+        try {
+            String query = "SELECT * FROM Orders;";
+
+            Statement stmt = conn.createStatement();
+
+            ResultSet result = stmt.executeQuery(query);
+
+            orderHistory = new OrderHistory();
+
+            while (result.next()) {
+                OrderHistory.TrackedOrder orderItem = orderHistory.new TrackedOrder(result.getInt("orderNum"),
+                        result.getInt("userID"), result.getDate("orderDate"), result.getDouble("total"), result.getString("status"), result.getDate("shippingDate"));
+
+                orderHistory.add(orderItem);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return orderHistory;
+    }
+
     public void cancel(int i) {
         String updateStmt = "UPDATE Orders SET status = ? WHERE orderNum = ?;";
 

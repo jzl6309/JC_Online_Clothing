@@ -85,6 +85,7 @@
     ArrayList<OrderDetails> orderDetails = (ArrayList<OrderDetails>) request.getAttribute("orderDetails");
 %>
 <h1>Order #<%=orderDetails.get(0).getOrderNum()%> Details</h1>
+
     <table>
         <tr>
             <th>Item</th>

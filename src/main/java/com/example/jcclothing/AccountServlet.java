@@ -43,6 +43,18 @@ public class AccountServlet extends HttpServlet {
 
             }
         }
+        else if (option.equals("orders")) {
+            TrackOrderService trackOrderService = new TrackOrderService();
+            OrderHistory orderHistory;
+
+            trackOrderService.openConn();
+            orderHistory = trackOrderService.getAllOrderHistory();
+            trackOrderService.closeConn();
+
+            req.setAttribute("orderHistory",orderHistory);
+            RequestDispatcher view = req.getRequestDispatcher("OrderProcessing.jsp");
+            view.forward(req, resp);
+        }
 
         RequestDispatcher view = req.getRequestDispatcher("index.jsp");
         view.forward(req, resp);

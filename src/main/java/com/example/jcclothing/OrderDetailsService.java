@@ -48,6 +48,50 @@ public class OrderDetailsService {
         return orderDetails;
     }
 
+    public void getOrderShippingInfo(int orderNum) {
+        Order order = Order.getInstance();
+
+        try {
+            String query = "SELECT * FROM Orders WHERE orderNum = ?;";
+
+            PreparedStatement stmt = conn.prepareStatement(query);
+
+            stmt.setInt(1, orderNum);
+
+            ResultSet result = stmt.executeQuery();
+
+            while (result.next()) {
+                order.setOrder(result.getString("fname"), result.getString("lname"), result.getString("addr"), result.getString("city"),
+                        result.getString("state"), result.getString("zip"), null, 0);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void updateStatus(int orderNum, String status) {
+        String updateStmt = "UPDATE Orders SET status = ? WHERE orderNum = ?;";
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(updateStmt);
+
+            if (status.equals("Paid")) {
+                stmt.setString(1, "In Process");
+            }
+            else {
+                stmt.setString(1,"Shipped");
+            }
+            stmt.setInt(2,orderNum);
+
+
+            stmt.execute();
+        }
+        catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
     public void closeConn() {
         try {
             conn.close();

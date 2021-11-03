@@ -101,6 +101,7 @@ public class CatalogServlet extends HttpServlet {
             req.setAttribute("catalog",catalog);
         }
         else {
+            catalogService.clearFilteredList();
             req.setAttribute("catalog", catalog);
         }
 

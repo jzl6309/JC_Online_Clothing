@@ -101,6 +101,10 @@
                     <input type="hidden" name="options" value="addItem">
                     <input class="buttons" type="submit" value="Submit" >
                 </form>
+                <form action="AccountServlet" method="post">
+                    <input type="hidden" name="options" value="catalog">
+                    <input class="buttons" type="submit" value="Cancel">
+                </form>
     <%
             }
         } else {
@@ -168,5 +172,6 @@
             }
         %>
     </table>
+</div>
 </body>
 </html>
