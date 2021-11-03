@@ -134,7 +134,15 @@
                     </td>
                     <td><%=df.format(orderHistory.get(i).getTotalPrice())%></td>
                     <td><%=orderHistory.get(i).getStatus()%></td>
-                    <td><%if (orderHistory.get(i) != null) orderHistory.get(i).getShippingDate();%></td>
+                    <td>
+    <%
+                if (orderHistory.get(i).getShippingDate() != null) {
+    %>
+                    <%=orderHistory.get(i).getShippingDate()%>
+    <%
+                }
+    %>
+                    </td>
             <%
                 if (!orderHistory.get(i).getStatus().equals("Shipped") && !orderHistory.get(i).getStatus().equals("Cancelled")) {
             %>

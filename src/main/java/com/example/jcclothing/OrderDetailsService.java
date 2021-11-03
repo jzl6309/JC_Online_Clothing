@@ -1,7 +1,12 @@
 package com.example.jcclothing;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.FieldPosition;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class OrderDetailsService {
 
@@ -81,11 +86,23 @@ public class OrderDetailsService {
             }
             else {
                 stmt.setString(1,"Shipped");
+                String updateShippedStmt = "UPDATE Orders SET shippingDate = ? WHERE orderNum = ?;";
+                PreparedStatement stmt2 = conn.prepareStatement(updateShippedStmt);
+
+                DateFormat format = new SimpleDateFormat("MM-dd-yyyy");
+                Date date = new Date();
+                format.format(date);
+                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+                stmt2.setDate(1, sqlDate);
+                stmt2.setInt(2, orderNum);
+
+                stmt2.execute();
             }
+
             stmt.setInt(2,orderNum);
-
-
             stmt.execute();
+
         }
         catch (SQLException e) {
             System.out.println(e);

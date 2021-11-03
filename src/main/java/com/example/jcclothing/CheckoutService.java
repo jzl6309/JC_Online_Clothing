@@ -46,8 +46,6 @@ public class CheckoutService {
                 userID = GUEST;
             }
 
-
-
             stmt.setInt(1,userID);
             stmt.setString(2, order.getFname());
             stmt.setString(3, order.getLname());

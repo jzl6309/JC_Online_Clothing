@@ -32,7 +32,7 @@ public class ShoppingCartServlet extends HttpServlet {
 
             boolean update = false;
             for (int i = 0; i < cart.size(); i++) {
-                if (cart.get(i).getItem().getItemID() == shItem.getItem().getItemID()) {
+                if (cart.get(i).getItem().getItemID() == shItem.getItem().getItemID() && cart.get(i).getSize() == size ) {
                     cart.get(i).updateQuantity(cart.get(i).getQuantity()+shItem.getQuantity());
                     update = true;
                 }

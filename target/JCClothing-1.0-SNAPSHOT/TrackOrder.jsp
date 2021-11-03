@@ -119,7 +119,7 @@
                 <td><%=orderHistory.get(i).getStatus()%></td>
                 <td><%if (orderHistory.get(i) != null) orderHistory.get(i).getShippingDate();%></td>
     <%
-                if (!orderHistory.get(i).getStatus().equals("Cancelled")) {
+                if (!orderHistory.get(i).getStatus().equals("Cancelled") && !orderHistory.get(i).getStatus().equals("Shipped")) {
     %>
                     <form name="remove" action="TrackOrder">
                         <td><input class="buttons" type="submit" value="Cancel"></td>
