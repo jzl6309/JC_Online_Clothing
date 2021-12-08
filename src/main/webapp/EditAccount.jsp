@@ -75,7 +75,7 @@
     </form></li>
 </ul>
 
-<h1>Under Construction!</h1>
+<h1>Account</h1>
 <p>Hello <%=AuthenticateService.user.getFname()%>!</p>
 <p>Edit Account Info:<br></p>
 <form action="EditAccount" method="post">
