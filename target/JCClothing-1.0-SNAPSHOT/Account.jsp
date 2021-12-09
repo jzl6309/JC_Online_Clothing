@@ -113,10 +113,11 @@
             }
             if (AuthenticateService.user.getType() == User.ADMIN) {
         %>
-                <td><form action="AccountServlet" method="post">
+            <%--    <td><form action="AccountServlet" method="post">
                     <input type="hidden" name="options" value="reports">
                     <input class="buttons" type="submit" value="Reports">
                 </form></td>
+            --%>
         <%
             }
         %>
@@ -129,7 +130,7 @@
         <%
             if(AuthenticateService.user.getType() == User.ADMIN || AuthenticateService.user.getType() == User.STAFF) {
         %>
-                <td><form action="AccountServlet" method="post">
+                <td><form action="Users.jsp" method="post">
                     <input type="hidden" name="options" value="users">
                     <input class="buttons" type="submit" value="Users">
                 </form></td>
@@ -137,7 +138,7 @@
             }
             if (AuthenticateService.user.getType() == User.ADMIN) {
         %>
-                <td><form action="AccountServlet" method="post">
+                <td><form action="ListStaff.jsp" method="post">
                     <input type="hidden" name="options" value="staff">
                     <input class="buttons" type="submit" value="Staff">
                 </form></td>
