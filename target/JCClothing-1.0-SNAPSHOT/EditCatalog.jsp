@@ -2,7 +2,8 @@
 <%@ page import="com.example.jcclothing.Item" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.example.jcclothing.AuthenticateService" %>
-<%@ page import="com.example.jcclothing.User" %><%--
+<%@ page import="com.example.jcclothing.User" %>
+<%@ page import="static com.sun.beans.introspect.PropertyInfo.Name.required" %><%--
   Created by IntelliJ IDEA.
   User: nughufer
   Date: 11/2/21
@@ -94,12 +95,31 @@
     %>
                 <form action="EditCatalog" method="post">
                     <input type="text" name="itemName" placeholder="Item Name" required>
-                    <input type="text" name="itemSex" placeholder="Item Sex" required>
+                    <input type="text" name="itemSex" placeholder="M-Male F-Female" required>
                     <input type="text" name="itemColor" placeholder="Item Color" required>
                     <input type="text" name="itemCost" placeholder="Item Cost" required>
                     <input type="text" name="itemImage" placeholder="Image Filename" required>
                     <input type="hidden" name="options" value="addItem">
                     <input class="buttons" type="submit" value="Submit" >
+                </form>
+                <form action="AccountServlet" method="post">
+                    <input type="hidden" name="options" value="catalog">
+                    <input class="buttons" type="submit" value="Cancel">
+                </form>
+    <%
+            }
+            else if (request.getAttribute("options").equals("edit")) {
+    %>
+                <form action="EditCatalog" method="post">
+                    Enter the Number of the Item You Want to Edit
+                    <input type="text" name="itemID" placeholder="Enter Item Number" required>
+                    <input type="text" name="itemName" placeholder="Item Name" required>
+                    <input type="text" name="itemSex" placeholder="M-Male F-Female" required>
+                    <input type="text" name="itemColor" placeholder="Item Color" required>
+                    <input type="text" name="itemCost" placeholder="Item Cost" required>
+                    <input type="text" name="itemImage" placeholder="Image Filename" required>
+                    <input type="hidden" name="options" value="editItem">
+                    <input class="buttons" type="submit" value="Submit">
                 </form>
                 <form action="AccountServlet" method="post">
                     <input type="hidden" name="options" value="catalog">
@@ -144,7 +164,7 @@
                 String source3 = null;
         %>
             <tr>
-                <td><%=item.getItemName() + " - " + item.getItemColor()%><br>
+                <td><%=item.getItemID() + " " + item.getItemName() + " - " + item.getItemColor()%><br>
                     <img src="<%=source%>" width="150px" height="150px"><br>
                     <%=df.format(item.getItemPrice())%></td>
                 <%
@@ -152,7 +172,7 @@
                         item2 = catalog.get(i+1);
                         source2 = "resources_web/" + item2.getImageFilename();
                 %>
-                <td><%=item2.getItemName() + " - " + item2.getItemColor()%><br>
+                <td><%=item2.getItemID() + " " + item2.getItemName() + " - " + item2.getItemColor()%><br>
                     <img src="<%=source2%>" width="150px" height="150px"><br>
                     <%=df.format(item2.getItemPrice())%>
                 </td>
@@ -162,7 +182,7 @@
                         item3 = catalog.get(i+2);
                         source3 = "resources_web/" + item3.getImageFilename();
                 %>
-                <td><%=item3.getItemName() + " - " + item3.getItemColor()%><br>
+                <td><%=item3.getItemID() + " " + item3.getItemName() + " - " + item3.getItemColor()%><br>
                     <img src="<%=source3%>" width="150px" height="150px"><br>
                     <%=df.format(item3.getItemPrice())%>
                 </td>

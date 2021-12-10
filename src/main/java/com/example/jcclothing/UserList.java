@@ -1,4 +1,5 @@
 package com.example.jcclothing;
+import java.util.ArrayList;
 
 import java.sql.*;
 
@@ -10,26 +11,26 @@ public class UserList {
     private static final String PW = "password";
     private Connection conn;
 
-    public String[] UserUsernames;
-    public String[] UserFNames;
-    public String[] UserLNames;
-
-    public String[] getUserFNames() {
-        return UserFNames;
-    }
-
-    public String[] getUserLNames() {
-        return UserLNames;
-    }
-
+    public ArrayList<String> UserUsernames;
+    public ArrayList<String> UserFNames;
+    public ArrayList<String> UserLNames;
+    public ArrayList<String> UserEmail;
+    public ArrayList<String> UserAddr;
+    public ArrayList<String> UserCity;
+    public ArrayList<String> UserState;
+    public ArrayList<String> UserZip;
 
 
     public UserList(){
 
-        UserUsernames = new String[1];
-        UserFNames = new String[1];
-        UserLNames = new String[1];
-
+        UserUsernames = new ArrayList<>();
+        UserFNames = new ArrayList<>();
+        UserLNames = new ArrayList<>();
+        UserEmail = new ArrayList<>();
+        UserAddr = new ArrayList<>();
+        UserCity = new ArrayList<>();
+        UserState = new ArrayList<>();
+        UserZip = new ArrayList<>();
     }
 
     public UserList getUserNames() {
@@ -40,21 +41,21 @@ public class UserList {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/JCClothing", USER, PW);
             Statement stmt = conn.createStatement();
 
-            String selectStmt = "SELECT username, fname, lname FROM Users where type = 2;";
+            String selectStmt = "SELECT username, fname, lname, email, addr, city, state, zip FROM Users where type = 2;";
 
             ResultSet result = stmt.executeQuery(selectStmt);
-
-            userList.UserUsernames = new String[50];
-            userList.UserFNames = new String[50];
-            userList.UserLNames = new String[50];
 
             int i = 0;
             while (result.next()) {
 
-                userList.UserUsernames[i] = (result.getString(1));
-                userList.UserFNames[i] = (result.getString(2));
-                userList.UserLNames[i] = (result.getString(3));
-
+                userList.UserUsernames.add(result.getString(1));
+                userList.UserFNames.add(result.getString(2));
+                userList.UserLNames.add(result.getString(3));
+                userList.UserEmail.add(result.getString(4));
+                userList.UserAddr.add(result.getString(5));
+                userList.UserCity.add(result.getString(6));
+                userList.UserState.add(result.getString(7));
+                userList.UserZip.add(result.getString(8));
                 i++;
             }
 

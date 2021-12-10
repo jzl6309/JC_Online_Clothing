@@ -37,6 +37,21 @@ public class EditCatalogServlet extends HttpServlet {
 
             }
         }
+        if (options.equals("edit")) {
+            CatalogService catalogService = CatalogService.getInstance();
+
+            try {
+                ArrayList<Item> catalog = catalogService.getCatalog();
+
+                req.setAttribute("catalog", catalog);
+                req.setAttribute("options", "edit");
+                RequestDispatcher view = req.getRequestDispatcher("EditCatalog.jsp");
+                view.forward(req, resp);
+            }
+            catch (SQLException e) {
+
+            }
+        }
         if (options.equals("addItem")) {
             String itemName = req.getParameter("itemName");
             String itemSex = req.getParameter("itemSex");
@@ -48,6 +63,34 @@ public class EditCatalogServlet extends HttpServlet {
 
             editCatalogService.openConn();
             editCatalogService.addItem();
+            editCatalogService.closeConn();
+
+            CatalogService catalogService = CatalogService.getInstance();
+            ArrayList<Item> catalog;
+
+            try {
+                catalog = catalogService.getCatalog();
+                req.setAttribute("catalog", catalog);
+            }
+            catch (SQLException e) {
+
+            }
+
+            RequestDispatcher view = req.getRequestDispatcher("EditCatalog.jsp");
+            view.forward(req, resp);
+        }
+        if (options.equals("editItem")) {
+            int itemID = Integer.parseInt(req.getParameter("itemID"));
+            String itemName = req.getParameter("itemName");
+            String itemSex = req.getParameter("itemSex");
+            String itemColor = req.getParameter("itemColor");
+            String itemCost = req.getParameter("itemCost");
+            String itemImage = req.getParameter("itemImage");
+
+            EditCatalogService editCatalogService = new EditCatalogService(itemID, itemName, itemSex, itemColor, Double.parseDouble(itemCost), itemImage);
+
+            editCatalogService.openConn();
+            editCatalogService.editItem();
             editCatalogService.closeConn();
 
             CatalogService catalogService = CatalogService.getInstance();

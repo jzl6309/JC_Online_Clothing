@@ -21,6 +21,8 @@ public class SignUpService {
     private boolean validSignUp =true;
     private boolean validEmail = true;
 
+    public SignUpService(){};
+
     public SignUpService(String username, String email, String password, String fname, String lname, String addr,
                          String city, String state, String zip, int type) throws SQLException {
 
@@ -104,6 +106,21 @@ public class SignUpService {
             System.out.println(e);
         }
 
+    }
+
+    public void removeStaff(int ID) {
+        String updateStmt = "UPDATE Users SET type = ? WHERE id = ?;";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(updateStmt);
+
+            stmt.setInt(1,User.USER);
+            stmt.setInt(2, ID);
+
+            stmt.execute();
+        }
+        catch (SQLException e) {
+
+        }
     }
 
     public void closeConn() {

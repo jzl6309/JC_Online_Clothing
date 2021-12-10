@@ -1,7 +1,8 @@
 <%@ page import="java.text.DecimalFormat" %>
 <%@ page import="java.sql.SQLException" %>
 
-<%@ page import="com.example.jcclothing.*" %><%--
+<%@ page import="com.example.jcclothing.*" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: DjChris0024
   Date: 12/8/2021
@@ -59,7 +60,7 @@
     }
 </style>
 <head>
-    <title>List of Staff</title>
+    <title>List of Users</title>
 </head>
 <body>
 
@@ -86,26 +87,29 @@
         <th>Username</th>
         <th>First Name</th>
         <th>Last Name</th>
+        <th>Email</th>
+        <th>Street Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip</th>
         <th></th>
     </tr>
     <%
         UserList userList = new UserList().getUserNames();
 
-        String[] Usernames = userList.UserUsernames;
-        String[] fNames = userList.UserFNames;
-        String[] lNames = userList.UserLNames;
-
-        int i = 0;
-
-        while(Usernames[i] != null){
+        for (int i = 0; i < userList.UserUsernames.size(); i++) {
     %>
     <tr>
-        <td><%=Usernames[i]%></td>
-        <td><%=fNames[i]%></td>
-        <td><%=lNames[i]%></td>
+        <td><%=userList.UserUsernames.get(i)%></td>
+        <td><%=userList.UserFNames.get(i)%></td>
+        <td><%=userList.UserLNames.get(i)%></td>
+        <td><%=userList.UserEmail.get(i)%></td>
+        <td><%=userList.UserAddr.get(i)%></td>
+        <td><%=userList.UserCity.get(i)%></td>
+        <td><%=userList.UserState.get(i)%></td>
+        <td><%=userList.UserZip.get(i)%></td>
     </tr>
     <%
-            i++;
         }
     %>
 </table>
