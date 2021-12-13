@@ -109,15 +109,16 @@
     <%
             }
             else if (request.getAttribute("options").equals("edit")) {
+                Item item = (Item) request.getAttribute("item");
     %>
                 <form action="EditCatalog" method="post">
                     Enter the Number of the Item You Want to Edit
-                    <input type="text" name="itemID" placeholder="Enter Item Number" required>
-                    <input type="text" name="itemName" placeholder="Item Name" required>
-                    <input type="text" name="itemSex" placeholder="M-Male F-Female" required>
-                    <input type="text" name="itemColor" placeholder="Item Color" required>
-                    <input type="text" name="itemCost" placeholder="Item Cost" required>
-                    <input type="text" name="itemImage" placeholder="Image Filename" required>
+                    <input type="text" name="itemName" value="<%=item.getItemName()%>" required>
+                    <input type="text" name="itemSex" value="<%=item.getItemSex()%>" required>
+                    <input type="text" name="itemColor" value="<%=item.getItemColor()%>" required>
+                    <input type="text" name="itemCost" value="<%=item.getItemPrice()%>" required>
+                    <input type="text" name="itemImage" value="<%=item.getImageFilename()%>" required>
+                    <input type="hidden" name="itemID" value="<%=item.getItemID()%>">
                     <input type="hidden" name="options" value="editItem">
                     <input class="buttons" type="submit" value="Submit">
                 </form>
@@ -137,6 +138,7 @@
             if (AuthenticateService.user.getType() == User.ADMIN) {
         %>
             <form action="EditCatalog" method="post">
+                <input type="text" name="itemID" placeholder="Enter Item Number to Edit" required>
                 <input type="hidden" name="options" value="edit">
                 <input class="buttons" type="submit" value="Edit">
             </form>

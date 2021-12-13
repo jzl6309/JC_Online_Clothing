@@ -42,7 +42,9 @@ public class EditCatalogServlet extends HttpServlet {
 
             try {
                 ArrayList<Item> catalog = catalogService.getCatalog();
+                Item item = catalogService.getItem(Integer.parseInt(req.getParameter("itemID")));
 
+                req.setAttribute("item",item);
                 req.setAttribute("catalog", catalog);
                 req.setAttribute("options", "edit");
                 RequestDispatcher view = req.getRequestDispatcher("EditCatalog.jsp");
